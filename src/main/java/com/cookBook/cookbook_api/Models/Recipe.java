@@ -12,10 +12,10 @@ public class Recipe {
     Integer id;
     @Column(nullable = false)
     String name;
-    String instructions ;
+    String instructions;
 
     @ManyToMany
-    private List<Ingredient >ingredients;
+    private List<Ingredient> ingredients;
 
     public Integer getId() {
         return id;

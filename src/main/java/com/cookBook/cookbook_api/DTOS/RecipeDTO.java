@@ -79,6 +79,7 @@ public class RecipeDTO {
         }
         return recipeDTOList;
     }
+
     public static Recipe convertFromDTO(RecipeDTO recipeDTO) {
         Recipe recipe = new Recipe();
         recipe.setId(recipeDTO.getId());
@@ -100,7 +101,7 @@ public class RecipeDTO {
     public static List<Recipe> convertFromDTO(List<RecipeDTO> recipeDTOList) {
         List<Recipe> recipeList = new ArrayList<>();
         for (RecipeDTO recipeDTO : recipeDTOList) {
-            Recipe recipe=convertFromDTO(recipeDTO);
+            Recipe recipe = convertFromDTO(recipeDTO);
             recipeList.add(recipe);
         }
         return recipeList;
