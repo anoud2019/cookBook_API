@@ -85,9 +85,11 @@ public class IngredientDTO {
 
     public static List<Ingredient> convertFromDTO(List<IngredientDTO> ingredientDTOList) {
         List<Ingredient> ingredientList = new ArrayList<>();
-        for (IngredientDTO ingredientDTO : ingredientDTOList) {
-            Ingredient ingredient = convertFromDTO(ingredientDTO);
-            ingredientList.add(ingredient);
+        if (!ingredientDTOList.isEmpty()) {
+            for (IngredientDTO ingredientDTO : ingredientDTOList) {
+                Ingredient ingredient = convertFromDTO(ingredientDTO);
+                ingredientList.add(ingredient);
+            }
         }
         return ingredientList;
     }
