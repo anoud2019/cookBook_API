@@ -37,4 +37,15 @@ public class RecipeController {
         }
         return recipeDTO;
     }
+
+    @PostMapping(value = "findByIngredients")
+    public List<RecipeDTO> findRecipesByIngredients(@RequestBody List<String> ingredientNames) {
+        try {
+            return recipeService.findRecipesByIngredients(ingredientNames);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return List.of();
+    }
 }
