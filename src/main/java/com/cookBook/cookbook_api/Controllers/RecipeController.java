@@ -27,5 +27,14 @@ public class RecipeController {
         return recipeDTOList;
     }
 
-
+    @PostMapping(value = "/add")
+    public RecipeDTO add(@RequestBody RecipeDTO dto) {
+        RecipeDTO recipeDTO = new RecipeDTO();
+        try {
+            recipeDTO = recipeService.addRecipe(dto);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return recipeDTO;
+    }
 }
