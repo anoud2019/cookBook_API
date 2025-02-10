@@ -76,9 +76,10 @@ public class IngredientDTO {
 
     public static Ingredient convertFromDTO(IngredientDTO ingredientDTO) {
         Ingredient ingredient = new Ingredient();
-        ingredient.setId(ingredientDTO.getId());
-        ingredient.setName(ingredientDTO.getName());
-
+        if (HelperUtils.isNotNull(ingredientDTO)) {
+            //ingredient.setId(ingredientDTO.getId());
+            ingredient.setName(ingredientDTO.getName());
+        }
         return ingredient;
     }
 
