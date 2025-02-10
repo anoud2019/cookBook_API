@@ -79,13 +79,14 @@ public class RecipeDTO {
 
     public static List<RecipeDTO> convertToDTO(List<Recipe> recipeList) {
         List<RecipeDTO> recipeDTOList = new ArrayList<>();
-        if (!recipeDTOList.isEmpty()) {
+        if (HelperUtils.isNotNull(recipeList) && !recipeList.isEmpty()) {
             for (Recipe recipe : recipeList) {
                 recipeDTOList.add(convertToDTO(recipe));
             }
         }
         return recipeDTOList;
     }
+
 
     public static Recipe convertFromDTO(RecipeDTO recipeDTO) {
         Recipe recipe = new Recipe();
