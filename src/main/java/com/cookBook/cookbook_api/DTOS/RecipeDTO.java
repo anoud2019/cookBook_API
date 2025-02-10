@@ -104,10 +104,10 @@ public class RecipeDTO {
                 }
             }
             recipe.setIngredients(ingredients);
-
-            return recipe;
         }
+        return recipe;
     }
+
 
     public static List<Recipe> convertFromDTO(List<RecipeDTO> recipeDTOList) {
         List<Recipe> recipeList = new ArrayList<>();
