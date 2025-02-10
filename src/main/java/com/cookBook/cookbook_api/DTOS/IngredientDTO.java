@@ -2,6 +2,7 @@ package com.cookBook.cookbook_api.DTOS;
 
 import com.cookBook.cookbook_api.Models.Ingredient;
 import com.cookBook.cookbook_api.Models.Recipe;
+import com.cookBook.cookbook_api.Utils.HelperUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,11 +47,13 @@ public class IngredientDTO {
 
     public static IngredientDTO convertToDTO(Ingredient ingredient) {
         IngredientDTO ingredientDTO = new IngredientDTO();
+        if (HelperUtils.isNotNull(ingredient))
         ingredientDTO.setId(ingredient.getId());
         ingredientDTO.setName(ingredient.getName());
 
         List<String> recipeNames = new ArrayList<>();
-        if (ingredient.getRecipes() != null) {
+        if (HelperUtils.isNotNull(ingredient.getRecipes())){
+        //if (ingredient.getRecipes() != null) {
             for (Recipe recipe : ingredient.getRecipes()) {
                 recipeNames.add(recipe.getName());
             }
