@@ -1,6 +1,7 @@
 package com.cookBook.cookbook_api.Controllers;
 
 import com.cookBook.cookbook_api.DTOS.RecipeDTO;
+import com.cookBook.cookbook_api.RequestObject.AddIngredientRequest;
 import com.cookBook.cookbook_api.Services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,14 +39,35 @@ public class RecipeController {
         return recipeDTO;
     }
 
-    @PostMapping(value = "findByIngredients")
+    @PostMapping(value = "/findByIngredients")
     public List<RecipeDTO> findRecipesByIngredients(@RequestBody List<String> ingredientNames) {
         try {
             return recipeService.findRecipesByIngredients(ingredientNames);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
         return List.of();
     }
+    @DeleteMapping(value = "/delete/{id}")
+    public Boolean deleteRecipe(@RequestBody RecipeDTO dto){
+        try {
+            return recipeService.
+        }
+    }
+
+
+
+    @DeleteMapping(value = "delete")
+    public Boolean delete(@RequestBody SeatDTO dto) {
+        try {
+            return seatService.deleteSeat(dto.getId());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+
+
+
 }
