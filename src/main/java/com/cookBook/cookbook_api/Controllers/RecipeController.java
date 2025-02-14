@@ -45,7 +45,7 @@ public class RecipeController {
         try {
             recipeDTO = recipeService.addRecipe(dto);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error("Error: " + e.getMessage());
         }
         return recipeDTO;
     }
