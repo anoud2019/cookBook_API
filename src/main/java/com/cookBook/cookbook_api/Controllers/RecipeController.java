@@ -26,9 +26,9 @@ public class RecipeController {
         try {
             recipeDTOList.addAll(recipeService.getAllRecipes());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-
+            logger.error("Error fetching all recipes: " + e.getMessage());
         }
+
         return recipeDTOList;
     }
 
