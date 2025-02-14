@@ -62,5 +62,9 @@ public class IngredientController {
         return ingredientDTO;
     }
 
+    @DeleteMapping(value = "/delete/{id}")
+    public Boolean delete(@PathVariable Integer id) {
+        return ingredientService.deleteIngredient(id);
+    }
 
 }
