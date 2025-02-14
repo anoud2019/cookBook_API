@@ -80,6 +80,17 @@ public class RecipeService {
         Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
         Recipe savedRecipe = recipeRepository.save(recipe);
         return RecipeDTO.convertToDTO(savedRecipe);
+    public List<RecipeDTO> searchRecipesByIngredients(List<String> ingredients) {
+        List<Recipe> recipes = recipeRepository.findRecipesByIngredients(ingredients);
+
+        List<RecipeDTO> recipeDTOList = new ArrayList<>();
+        for (Recipe recipe : recipes) {
+            recipeDTOList.add(RecipeDTO.convertToDTO(recipe));
+        }
+
+        return recipeDTOList;
+    }
+
     }
 
 
