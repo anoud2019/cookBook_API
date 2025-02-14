@@ -27,6 +27,14 @@ public class IngredientController {
         try {
             ingredientDTO = ingredientService.addIngredient(dto);
         } catch (Exception e) {
+            logger.error("Error adding ingredient: ", e);
+
+        }
+        return ingredientDTO;
+    }
+
+
+        } catch (Exception e) {
             System.out.println(e.getMessage());
 
         }
