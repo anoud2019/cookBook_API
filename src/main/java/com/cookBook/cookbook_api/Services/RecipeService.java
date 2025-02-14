@@ -39,6 +39,24 @@ public class RecipeService {
     }
 
 
+    public RecipeDTO addRecipe(RecipeDTO dto) {
+
+        Recipe entity = RecipeDTO.convertFromDTO(dto);
+
+        //add ingredient to recipe
+        for (IngredientDTO ingredientDTO : dto.getIngredients()) {
+            Ingredient ingredient = IngredientDTO.convertFromDTO(ingredientDTO);
+            if (!ingredient.getRecipes().contains(entity)) {
+                ingredient.getRecipes().add(entity);
+                ingredientRepository.save(ingredient);
+            }
+        }
+        entity = recipeRepository.save(entity);
+        return RecipeDTO.convertToDTO(entity);
+
+    }
+
+
     }
 
     public RecipeDTO addRecipe(RecipeDTO recipeDTO) {
