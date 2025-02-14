@@ -33,6 +33,12 @@ public class RecipeService {
     public List<RecipeDTO> findRecipesByIngredients(List<String> ingredientNames) {
         List<Recipe> recipes = recipeRepository.findByIngredientsNameIn(ingredientNames);
         return RecipeDTO.convertToDTO(recipes);
+    public RecipeDTO getRecipeById(Integer id) {
+        Recipe entity = recipeRepository.getRecipeById(id);
+        return RecipeDTO.convertToDTO(entity);
+    }
+
+
     }
 
     public RecipeDTO addRecipe(RecipeDTO recipeDTO) {
