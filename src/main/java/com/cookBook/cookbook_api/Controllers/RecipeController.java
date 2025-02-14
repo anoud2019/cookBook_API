@@ -32,6 +32,13 @@ public class RecipeController {
         return recipeDTOList;
     }
 
+    @GetMapping(value = "/getById")
+    public RecipeDTO getRecipeById(@RequestParam(value = "recipeId") Integer id) {
+
+        return recipeService.getRecipeById(id);
+
+    }
+
     @PostMapping(value = "/add")
     public RecipeDTO add(@RequestBody RecipeDTO dto) {
         RecipeDTO recipeDTO = new RecipeDTO();
