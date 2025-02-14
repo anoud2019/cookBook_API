@@ -84,5 +84,14 @@ public class RecipeController {
 
     }
 
+    @GetMapping(value = "/searchRecipesByName")
+    public List<RecipeDTO> searchRecipesByName(@RequestParam String name) {
+        try {
+            return recipeService.searchRecipesByName(name);
+        } catch (Exception e) {
+            logger.error("Error: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
 
 }
