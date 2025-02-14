@@ -1,6 +1,7 @@
 package com.cookBook.cookbook_api.Services;
 
 import com.cookBook.cookbook_api.DTOS.IngredientDTO;
+import com.cookBook.cookbook_api.DTOS.RecipeDTO;
 import com.cookBook.cookbook_api.Models.Ingredient;
 import com.cookBook.cookbook_api.Models.Recipe;
 import com.cookBook.cookbook_api.Repositories.IngredientRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class IngredientService {
@@ -32,6 +34,11 @@ public class IngredientService {
             Integer id = Integer.parseInt(recipeId);
             Recipe recipe = recipeRepository.findById(id).orElse(null);
             if (HelperUtils.isNotNull(recipe)) {
+    public IngredientDTO getIngredientById(Integer id) {
+        Ingredient entity = ingredientRepository.getIngredientById(id);
+        return IngredientDTO.convertToDTO(entity);
+    }
+
                 recipes.add(recipe);
             }
 
