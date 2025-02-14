@@ -2,6 +2,8 @@ package com.cookBook.cookbook_api.Controllers;
 
 import com.cookBook.cookbook_api.DTOS.IngredientDTO;
 import com.cookBook.cookbook_api.DTOS.RecipeDTO;
+import com.cookBook.cookbook_api.Models.Recipe;
+import com.cookBook.cookbook_api.RequestObject.AddIngredientRequest;
 import com.cookBook.cookbook_api.Services.IngredientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/ingredients")
@@ -62,9 +67,20 @@ public class IngredientController {
         return ingredientDTO;
     }
 
+    //        @DeleteMapping(value = "/delete")
+//    public Boolean delete(@RequestBody IngredientDTO dto) {
+//        try {
+//            return ingredientService.deleteIngredient(dto.getId());
+//        } catch (Exception e) {
+//            logger.error("Error deleting ingredient: ", e);
+//        }
+//        return false;
+//    }
     @DeleteMapping(value = "/delete/{id}")
     public Boolean delete(@PathVariable Integer id) {
         return ingredientService.deleteIngredient(id);
     }
 
 }
+
+
