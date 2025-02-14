@@ -15,6 +15,7 @@ public class RecipeDTO {
     private String instructions;
 
     private List<String> ingredients;
+    private List<IngredientDTO> ingredients;
 
     public Integer getId() {
         return id;
@@ -41,10 +42,12 @@ public class RecipeDTO {
     }
 
     public List<String> getIngredients() {
+    public List<IngredientDTO> getIngredients() {
         return ingredients;
     }
 
     public void setIngredients(List<String> ingredients) {
+    public void setIngredients(List<IngredientDTO> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -66,12 +69,15 @@ public class RecipeDTO {
             recipeDTO.setInstructions(recipe.getInstructions());
 
             List<String> ingredientNames = new ArrayList<>();
+            List<IngredientDTO> ingredientDTOList = new ArrayList<>();
             if (HelperUtils.isNotNull(recipe.getIngredients())) {
                 for (Ingredient ingredient : recipe.getIngredients()) {
                     ingredientNames.add(ingredient.getName());
+                    ingredientDTOList.add(IngredientDTO.convertToDTO(ingredient));
                 }
             }
             recipeDTO.setIngredients(ingredientNames);
+            recipeDTO.setIngredients(ingredientDTOList);
         }
 
         return recipeDTO;
@@ -82,6 +88,9 @@ public class RecipeDTO {
         if (HelperUtils.isNotNull(recipeList) && !recipeList.isEmpty()) {
             for (Recipe recipe : recipeList) {
                 recipeDTOList.add(convertToDTO(recipe));
+        if (!recipeList.isEmpty()) {
+            for (Recipe r : recipeList) {
+                recipeDTOList.add(convertToDTO(r));
             }
         }
         return recipeDTOList;
