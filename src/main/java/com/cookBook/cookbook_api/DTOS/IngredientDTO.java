@@ -48,14 +48,22 @@ public class IngredientDTO {
     public static IngredientDTO convertToDTO(Ingredient ingredient) {
         IngredientDTO ingredientDTO = new IngredientDTO();
         if (HelperUtils.isNotNull(ingredient))
+        if (HelperUtils.isNotNull(ingredient)) {
             ingredientDTO.setId(ingredient.getId());
         ingredientDTO.setName(ingredient.getName());
+            ingredientDTO.setName(ingredient.getName());
+
 
         List<String> recipeNames = new ArrayList<>();
         if (HelperUtils.isNotNull(ingredient.getRecipes())) {
             //if (ingredient.getRecipes() != null) {
             for (Recipe recipe : ingredient.getRecipes()) {
                 recipeNames.add(recipe.getName());
+            List<RecipeDTO> recipeDTOList = new ArrayList<>();
+            if (HelperUtils.isNotNull(ingredient.getRecipes()) && !ingredient.getRecipes().isEmpty()) {
+                for (Recipe recipe : ingredient.getRecipes()) {
+                    recipeDTOList.add(RecipeDTO.convertToDTO(recipe));
+                }
             }
         }
         ingredientDTO.setRecipes(recipeNames);
