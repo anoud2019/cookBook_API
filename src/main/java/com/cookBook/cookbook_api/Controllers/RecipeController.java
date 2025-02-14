@@ -50,14 +50,16 @@ public class RecipeController {
         return recipeDTO;
     }
 
-    @PostMapping(value = "/findByIngredients")
-    public List<RecipeDTO> findRecipesByIngredients(@RequestBody List<String> ingredientNames) {
+
+    @PostMapping("update")
+    public RecipeDTO update(@RequestBody RecipeDTO dto) {
+        RecipeDTO recipeDTO = new RecipeDTO();
         try {
-            return recipeService.findRecipesByIngredients(ingredientNames);
+            recipeDTO = recipeService.updateRecipe(dto);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error("Error: " + e.getMessage());
         }
-        return List.of();
+        return recipeDTO;
     }
     @DeleteMapping(value = "/delete/{id}")
     public Boolean deleteRecipe(@RequestBody RecipeDTO dto){
