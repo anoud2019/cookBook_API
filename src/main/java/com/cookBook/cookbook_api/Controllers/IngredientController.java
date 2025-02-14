@@ -45,6 +45,11 @@ public class IngredientController {
         return ingredientDTOList;
     }
 
+    @GetMapping(value = "getById")
+    public IngredientDTO getIngredientById(@RequestParam(value = "ingredientId") Integer id) {
+        return ingredientService.getIngredientById(id);
+    }
+
         }
         return ingredientDTO;
     }
