@@ -104,6 +104,11 @@ public class RecipeDTO {
             recipe.setName(recipeDTO.getName());
             recipe.setInstructions(recipeDTO.getInstructions());
 
+    public static Recipe convertFromDTO(RecipeDTO dto) {
+        Recipe entity = new Recipe();
+        if (HelperUtils.isNotNull(dto)) {
+            entity.setName(dto.getName());
+            entity.setInstructions(dto.getInstructions());
 
             List<Ingredient> ingredients = new ArrayList<>();
             if (HelperUtils.isNotNull(recipeDTO.getIngredients())) {
