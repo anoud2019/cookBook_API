@@ -71,15 +71,18 @@ public class RecipeController {
         }
     }
 
+    @GetMapping(value = "/searchRecipesByIngredients")
+    public List<RecipeDTO> searchRecipesByIngredients(@RequestParam List<String> ingredients) {
         try {
-            return seatService.deleteSeat(dto.getId());
+            return recipeService.searchRecipesByIngredients(ingredients);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
+            logger.error("Error while searching recipes by ingredients: " + e.getMessage());
+
+            return new ArrayList<>();
         }
+
+
     }
-
-
 
 
 }
