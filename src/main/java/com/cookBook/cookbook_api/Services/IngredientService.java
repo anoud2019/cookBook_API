@@ -70,6 +70,11 @@ public class IngredientService {
 
     }
 
+
+    public Boolean deleteIngredient(Integer id) {
+        if (HelperUtils.isNotNull(id) && ingredientRepository.existsById(id)) {
+            ingredientRepository.deleteById(id);
+            return true;
         }
         ingredient.setRecipes(recipes);
         Ingredient saveIngredient = ingredientRepository.save(ingredient);
