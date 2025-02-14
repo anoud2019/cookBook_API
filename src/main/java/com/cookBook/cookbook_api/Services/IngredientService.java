@@ -79,7 +79,17 @@ public class IngredientService {
         ingredient.setRecipes(recipes);
         Ingredient saveIngredient = ingredientRepository.save(ingredient);
         return IngredientDTO.convertToDTO(saveIngredient);
+        return false;
+    }
 
+
+    public IngredientDTO updateIngredient(IngredientDTO dto) {
+        if (HelperUtils.isNotNull(dto)) {
+            Ingredient entity = IngredientDTO.convertFromDTO(dto);
+            entity = ingredientRepository.save(entity);
+            return IngredientDTO.convertToDTO(entity);
+        }
+        return new IngredientDTO();
     }
 
 
