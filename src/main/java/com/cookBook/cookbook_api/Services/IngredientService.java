@@ -39,8 +39,36 @@ public class IngredientService {
         return IngredientDTO.convertToDTO(entity);
     }
 
-                recipes.add(recipe);
+    public IngredientDTO addIngredient(IngredientDTO dto) {
+        if (HelperUtils.isNotNull(dto.getId())) {
+            Ingredient entity = IngredientDTO.convertFromDTO(dto);
+
+            //add recipe to ingredient
+            for (RecipeDTO recipeDTO : dto.getRecipes()) {
+                if (HelperUtils.isNotNull(recipeDTO.getId())) {
+                    Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
+                    if (!recipe.getIngredients().contains(entity)) {
+                        recipe.getIngredients().add(entity);
+                        recipeRepository.save(recipe);
+                    }
+                }
             }
+            entity = ingredientRepository.save(entity);
+            return IngredientDTO.convertToDTO(entity);
+        } else {
+            Ingredient entity = IngredientDTO.convertFromDTO(dto);
+            List<Recipe> recipes = new ArrayList<>();
+            for (RecipeDTO recipeDTO : dto.getRecipes()) {
+                Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
+                recipe.getIngredients().add(entity);
+                recipes.add(recipe);
+                recipeRepository.save(recipe);
+            }
+            entity = ingredientRepository.save(entity);
+            return IngredientDTO.convertToDTO(entity);
+        }
+
+    }
 
         }
         ingredient.setRecipes(recipes);
