@@ -1,7 +1,6 @@
 package com.cookBook.cookbook_api.Controllers;
 
 import com.cookBook.cookbook_api.DTOS.RecipeDTO;
-import com.cookBook.cookbook_api.RequestObject.AddIngredientRequest;
 
 import com.cookBook.cookbook_api.Services.RecipeService;
 import org.slf4j.Logger;
