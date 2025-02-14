@@ -67,6 +67,13 @@ public class RecipeService {
         return new RecipeDTO();
     }
 
+
+    public Boolean deleteRecipe(Integer id) {
+        if (HelperUtils.isNotNull(id) && recipeRepository.existsById(id)) {
+            recipeRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     public RecipeDTO addRecipe(RecipeDTO recipeDTO) {
