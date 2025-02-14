@@ -57,6 +57,16 @@ public class RecipeService {
     }
 
 
+    public RecipeDTO updateRecipe(RecipeDTO dto) {
+        if (HelperUtils.isNotNull(dto)) {
+            Recipe entity = RecipeDTO.convertFromDTO(dto);
+            entity = recipeRepository.save(entity);
+            return RecipeDTO.convertToDTO(entity);
+        }
+
+        return new RecipeDTO();
+    }
+
     }
 
     public RecipeDTO addRecipe(RecipeDTO recipeDTO) {
