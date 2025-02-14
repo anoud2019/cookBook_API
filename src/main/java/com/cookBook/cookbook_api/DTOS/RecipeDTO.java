@@ -115,12 +115,18 @@ public class RecipeDTO {
                 for (String ingredientName : recipeDTO.getIngredients()) {
                     Ingredient ingredient = new Ingredient();
                     ingredient.setName(ingredientName);
+            if (HelperUtils.isNotNull(dto.getIngredients())) {
+                for (IngredientDTO ingredientDTO : dto.getIngredients()) {
+                    Ingredient ingredient = IngredientDTO.convertFromDTO(ingredientDTO);
+                    ingredient.getRecipes().add(entity);
                     ingredients.add(ingredient);
                 }
             }
             recipe.setIngredients(ingredients);
+            entity.setIngredients(ingredients);
         }
         return recipe;
+        return entity;
     }
 
 
