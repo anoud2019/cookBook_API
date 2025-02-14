@@ -12,7 +12,9 @@ public class Ingredient {
     @Column(nullable = false)
     String name;
     @ManyToMany
+
     private List<Recipe> recipes;
+
 
     public Integer getId() {
         return id;
@@ -37,4 +39,6 @@ public class Ingredient {
     public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
     }
+
+
 }
