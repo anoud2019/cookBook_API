@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -27,13 +26,6 @@ public class IngredientService {
         return IngredientDTO.convertToDTO(ingredients);
     }
 
-    public IngredientDTO addIngredient(IngredientDTO ingredientDTO) {
-        Ingredient ingredient = IngredientDTO.convertFromDTO(ingredientDTO);
-        List<Recipe> recipes = new ArrayList<>();
-        for (String recipeId : ingredientDTO.getRecipes()) {
-            Integer id = Integer.parseInt(recipeId);
-            Recipe recipe = recipeRepository.findById(id).orElse(null);
-            if (HelperUtils.isNotNull(recipe)) {
     public IngredientDTO getIngredientById(Integer id) {
         Ingredient entity = ingredientRepository.getIngredientById(id);
         return IngredientDTO.convertToDTO(entity);
@@ -76,9 +68,6 @@ public class IngredientService {
             ingredientRepository.deleteById(id);
             return true;
         }
-        ingredient.setRecipes(recipes);
-        Ingredient saveIngredient = ingredientRepository.save(ingredient);
-        return IngredientDTO.convertToDTO(saveIngredient);
         return false;
     }
 
