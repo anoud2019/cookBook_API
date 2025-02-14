@@ -68,6 +68,9 @@ public class IngredientDTO {
         }
         ingredientDTO.setRecipes(recipeNames);
 
+
+            ingredientDTO.setRecipes(recipeDTOList);
+        }
         return ingredientDTO;
     }
 
