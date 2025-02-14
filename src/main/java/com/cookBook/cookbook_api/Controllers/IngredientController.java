@@ -21,6 +21,7 @@ public class IngredientController {
     private IngredientService ingredientService;
 
     @PostMapping(value = "/addIngredients")
+    @PostMapping(value = "/add")
     public IngredientDTO add(@RequestBody IngredientDTO dto) {
         IngredientDTO ingredientDTO = new IngredientDTO();
         try {
