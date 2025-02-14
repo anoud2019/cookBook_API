@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class RecipeService {
@@ -30,9 +30,6 @@ public class RecipeService {
         return RecipeDTO.convertToDTO(recipes);
     }
 
-    public List<RecipeDTO> findRecipesByIngredients(List<String> ingredientNames) {
-        List<Recipe> recipes = recipeRepository.findByIngredientsNameIn(ingredientNames);
-        return RecipeDTO.convertToDTO(recipes);
     public RecipeDTO getRecipeById(Integer id) {
         Recipe entity = recipeRepository.getRecipeById(id);
         return RecipeDTO.convertToDTO(entity);
@@ -76,10 +73,6 @@ public class RecipeService {
         return false;
     }
 
-    public RecipeDTO addRecipe(RecipeDTO recipeDTO) {
-        Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
-        Recipe savedRecipe = recipeRepository.save(recipe);
-        return RecipeDTO.convertToDTO(savedRecipe);
     public List<RecipeDTO> searchRecipesByIngredients(List<String> ingredients) {
         List<Recipe> recipes = recipeRepository.findRecipesByIngredients(ingredients);
 
