@@ -62,16 +62,15 @@ public class RecipeController {
         return recipeDTO;
     }
     @DeleteMapping(value = "/delete/{id}")
-    public Boolean deleteRecipe(@RequestBody RecipeDTO dto){
+    public Boolean deleteRecipe(@PathVariable Integer id) {
         try {
-            return recipeService.
+            return recipeService.deleteRecipe(id);
+        } catch (Exception e) {
+            logger.error("Error: " + e.getMessage());
+            return false;
         }
     }
 
-
-
-    @DeleteMapping(value = "delete")
-    public Boolean delete(@RequestBody SeatDTO dto) {
         try {
             return seatService.deleteSeat(dto.getId());
         } catch (Exception e) {
