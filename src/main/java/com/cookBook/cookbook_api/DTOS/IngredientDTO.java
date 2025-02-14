@@ -36,37 +36,19 @@ public class IngredientDTO {
         this.recipes = recipes;
     }
 
-    @Override
-    public String toString() {
-        return "IngredientDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", recipes=" + recipes +
-                '}';
-    }
-
     public static IngredientDTO convertToDTO(Ingredient ingredient) {
         IngredientDTO ingredientDTO = new IngredientDTO();
-        if (HelperUtils.isNotNull(ingredient))
         if (HelperUtils.isNotNull(ingredient)) {
             ingredientDTO.setId(ingredient.getId());
-        ingredientDTO.setName(ingredient.getName());
             ingredientDTO.setName(ingredient.getName());
 
 
-        List<String> recipeNames = new ArrayList<>();
-        if (HelperUtils.isNotNull(ingredient.getRecipes())) {
-            //if (ingredient.getRecipes() != null) {
-            for (Recipe recipe : ingredient.getRecipes()) {
-                recipeNames.add(recipe.getName());
             List<RecipeDTO> recipeDTOList = new ArrayList<>();
             if (HelperUtils.isNotNull(ingredient.getRecipes()) && !ingredient.getRecipes().isEmpty()) {
                 for (Recipe recipe : ingredient.getRecipes()) {
                     recipeDTOList.add(RecipeDTO.convertToDTO(recipe));
                 }
             }
-        }
-        ingredientDTO.setRecipes(recipeNames);
 
 
             ingredientDTO.setRecipes(recipeDTOList);
@@ -76,10 +58,6 @@ public class IngredientDTO {
 
     public static List<IngredientDTO> convertToDTO(List<Ingredient> ingredientList) {
         List<IngredientDTO> ingredientDTOList = new ArrayList<>();
-        if (ingredientList.isEmpty()) {
-
-            for (Ingredient ingredient : ingredientList) {
-                ingredientDTOList.add(convertToDTO(ingredient));
         if (!ingredientList.isEmpty()) {
             for (Ingredient i : ingredientList) {
                 ingredientDTOList.add(convertToDTO(i));
@@ -88,11 +66,6 @@ public class IngredientDTO {
         return ingredientDTOList;
     }
 
-    public static Ingredient convertFromDTO(IngredientDTO ingredientDTO) {
-        Ingredient ingredient = new Ingredient();
-        if (HelperUtils.isNotNull(ingredientDTO)) {
-            //ingredient.setId(ingredientDTO.getId());
-            ingredient.setName(ingredientDTO.getName());
     public static Ingredient convertFromDTO(IngredientDTO dto) {
         Ingredient entity = new Ingredient();
         if (HelperUtils.isNotNull(dto)) {
@@ -109,7 +82,6 @@ public class IngredientDTO {
             }
             entity.setRecipes(recipes);
         }
-        return ingredient;
         return entity;
     }
 
@@ -117,9 +89,6 @@ public class IngredientDTO {
     public static List<Ingredient> convertFromDTO(List<IngredientDTO> ingredientDTOList) {
         List<Ingredient> ingredientList = new ArrayList<>();
         if (!ingredientDTOList.isEmpty()) {
-            for (IngredientDTO ingredientDTO : ingredientDTOList) {
-                Ingredient ingredient = convertFromDTO(ingredientDTO);
-                ingredientList.add(ingredient);
             for (IngredientDTO dto : ingredientDTOList) {
                 ingredientList.add(IngredientDTO.convertFromDTO(dto));
             }
