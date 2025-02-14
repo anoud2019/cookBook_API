@@ -8,17 +8,12 @@ import com.cookBook.cookbook_api.Services.IngredientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ingredients")
 @RequestMapping(value = "/ingredients")
 public class IngredientController {
     private final Logger logger = LoggerFactory.getLogger(IngredientController.class);
@@ -26,7 +21,6 @@ public class IngredientController {
     @Autowired
     private IngredientService ingredientService;
 
-    @PostMapping(value = "/addIngredients")
     @PostMapping(value = "/add")
     public IngredientDTO add(@RequestBody IngredientDTO dto) {
         IngredientDTO ingredientDTO = new IngredientDTO();
