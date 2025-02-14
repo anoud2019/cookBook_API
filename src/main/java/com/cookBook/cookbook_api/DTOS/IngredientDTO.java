@@ -80,6 +80,8 @@ public class IngredientDTO {
 
             for (Ingredient ingredient : ingredientList) {
                 ingredientDTOList.add(convertToDTO(ingredient));
+        if (!ingredientList.isEmpty()) {
+            for (Ingredient i : ingredientList) {
             }
         }
         return ingredientDTOList;
