@@ -136,6 +136,9 @@ public class RecipeDTO {
             for (RecipeDTO recipeDTO : recipeDTOList) {
                 // Recipe recipe = convertFromDTO(recipeDTO);
                 recipeList.add(RecipeDTO.convertFromDTO(recipeDTO));
+        if (!recipeDTOList.isEmpty()) {
+            for (RecipeDTO dto : recipeDTOList) {
+                recipeList.add(RecipeDTO.convertFromDTO(dto));
             }
         }
         return recipeList;
