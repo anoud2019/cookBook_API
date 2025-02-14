@@ -10,7 +10,7 @@ import java.util.List;
 public class IngredientDTO {
     private Integer id;
     private String name;
-    private List<String> recipes;
+    private List<RecipeDTO> recipes;
 
     public Integer getId() {
         return id;
@@ -28,11 +28,11 @@ public class IngredientDTO {
         this.name = name;
     }
 
-    public List<String> getRecipes() {
+    public List<RecipeDTO> getRecipes() {
         return recipes;
     }
 
-    public void setRecipes(List<String> recipes) {
+    public void setRecipes(List<RecipeDTO> recipes) {
         this.recipes = recipes;
     }
 
