@@ -17,6 +17,7 @@ public class Recipe {
     @ManyToMany
     private List<Ingredient> ingredients;
 
+
     public Integer getId() {
         return id;
     }
@@ -48,4 +49,5 @@ public class Recipe {
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
+
 }
