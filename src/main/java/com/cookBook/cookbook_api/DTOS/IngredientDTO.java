@@ -93,8 +93,24 @@ public class IngredientDTO {
         if (HelperUtils.isNotNull(ingredientDTO)) {
             //ingredient.setId(ingredientDTO.getId());
             ingredient.setName(ingredientDTO.getName());
+    public static Ingredient convertFromDTO(IngredientDTO dto) {
+        Ingredient entity = new Ingredient();
+        if (HelperUtils.isNotNull(dto)) {
+            entity.setName(dto.getName());
+
+
+            List<Recipe> recipes = new ArrayList<>();
+            if (HelperUtils.isNotNull(dto.getRecipes())) {
+                for (RecipeDTO recipeDTO : dto.getRecipes()) {
+                    Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
+                    recipe.getIngredients().add(entity);
+                    recipes.add(recipe);
+                }
+            }
+            entity.setRecipes(recipes);
         }
         return ingredient;
+        return entity;
     }
 
     public static List<Ingredient> convertFromDTO(List<IngredientDTO> ingredientDTOList) {
