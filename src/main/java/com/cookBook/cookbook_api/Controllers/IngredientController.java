@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/ingredients")
+@RequestMapping(value = "/ingredients")
 public class IngredientController {
     private final Logger logger = LoggerFactory.getLogger(IngredientController.class);
 
