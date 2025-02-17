@@ -158,9 +158,6 @@ public class IngredientDTO {
             Set<Recipe> recipes = new HashSet<>();
             if (HelperUtils.isNotNull(dto.getRecipes())) {
                 for (RecipeDTO recipeDTO : dto.getRecipes()) {
-                    Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
-                    recipe.getIngredients().add(entity);
-                    recipes.add(recipe);
                 }
             }
             entity.setRecipes(recipes);
