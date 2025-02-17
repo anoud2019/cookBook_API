@@ -64,18 +64,44 @@ public class RecipeService {
 //    }
     public RecipeDTO addRecipe(RecipeDTO dto) {
 
+        Recipe existingRecipe = recipeRepository.findByName(dto.getName());
+        if (existingRecipe != null) {
+            throw new RuntimeException("Recipe with the same name already exists.");
+        }
+
+        Recipe recipe = new Recipe();
+        recipe.setName(dto.getName());
+        recipe.setInstructions(dto.getInstructions());
 
         //add ingredient to recipe
+        Set<Ingredient> ingredients = new HashSet<>();
         for (IngredientDTO ingredientDTO : dto.getIngredients()) {
             Ingredient ingredient = IngredientDTO.convertFromDTO(ingredientDTO);
             if (!ingredient.getRecipes().contains(entity)) {
                 ingredient.getRecipes().add(entity);
                 ingredientRepository.save(ingredient);
+            Ingredient ingredient;
+            if (ingredientDTO.getId() != null) {
+
+                ingredient = ingredientRepository.findById(ingredientDTO.getId())
+                        .orElseThrow(() -> new RuntimeException("Ingredient not found"));
+            } else {
+
+                ingredient = new Ingredient();
+                ingredient.setName(ingredientDTO.getName());
+                ingredient = ingredientRepository.save(ingredient);
             }
+            ingredients.add(ingredient);
         }
         entity = recipeRepository.save(entity);
         return RecipeDTO.convertToDTO(entity);
+        recipe.setIngredients(ingredients);
 
+
+        Recipe savedRecipe = recipeRepository.save(recipe);
+
+
+        return RecipeDTO.convertToDTO(savedRecipe);
     }
 
 
