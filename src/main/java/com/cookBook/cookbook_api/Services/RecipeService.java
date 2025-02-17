@@ -156,7 +156,10 @@ public class RecipeService {
         return false;
     }
 
+    public Set<RecipeDTO> searchRecipesByIngredients(Set<String> ingredients) {
+        Set<Recipe> recipes = recipeRepository.findRecipesByIngredients(ingredients);
 
+        Set<RecipeDTO> recipeDTOList = new HashSet<>();
         for (Recipe recipe : recipes) {
             recipeDTOList.add(RecipeDTO.convertToDTO(recipe));
         }
