@@ -167,11 +167,8 @@ public class RecipeService {
         return recipeDTOList;
     }
 
-    public List<RecipeDTO> searchRecipesByName(String name) {
 
-        List<Recipe> recipes = recipeRepository.findRecipesByNameContaining(name);
 
-        List<RecipeDTO> recipeDTOList = new ArrayList<>();
 
 
         for (Recipe recipe : recipes) {
