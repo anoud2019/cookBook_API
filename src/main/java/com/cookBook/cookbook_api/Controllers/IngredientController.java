@@ -36,8 +36,6 @@ public class IngredientController {
 
 
     @GetMapping(value = "/getAll")
-    public List<IngredientDTO> getAllIngredients() {
-        List<IngredientDTO> ingredientDTOList = new ArrayList<>();
         try {
             ingredientDTOList.addAll(ingredientService.getAllIngredients());
         } catch (Exception e) {
