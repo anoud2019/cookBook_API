@@ -5,9 +5,14 @@ import com.cookBook.cookbook_api.Models.Recipe;
 import com.cookBook.cookbook_api.Utils.HelperUtils;
 
 
+import java.util.HashSet;
+
+import java.util.Set;
+
 public class IngredientDTO {
     private Integer id;
     private String name;
+    private Set<RecipeDTO> recipes;
 
     public Integer getId() {
         return id;
@@ -25,9 +30,11 @@ public class IngredientDTO {
         this.name = name;
     }
 
+    public Set<RecipeDTO> getRecipes() {
         return recipes;
     }
 
+    public void setRecipes(Set<RecipeDTO> recipes) {
         this.recipes = recipes;
     }
 
@@ -38,6 +45,7 @@ public class IngredientDTO {
             ingredientDTO.setName(ingredient.getName());
 
             if (HelperUtils.isNotNull(ingredient.getRecipes()) && !ingredient.getRecipes().isEmpty()) {
+            Set<RecipeDTO> recipeDTOs = new HashSet<>();
                 for (Recipe recipe : ingredient.getRecipes()) {
                     recipeDTOList.add(RecipeDTO.convertToDTO(recipe));
                 }
@@ -61,6 +69,7 @@ public class IngredientDTO {
         if (HelperUtils.isNotNull(dto)) {
             entity.setName(dto.getName());
 
+            Set<Recipe> recipes = new HashSet<>();
             if (HelperUtils.isNotNull(dto.getRecipes())) {
                 for (RecipeDTO recipeDTO : dto.getRecipes()) {
                     Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
@@ -74,6 +83,8 @@ public class IngredientDTO {
     }
 
 
+    public static Set<Ingredient> convertFromDTO(Set<IngredientDTO> ingredientDTOList) {
+        Set<Ingredient> ingredientList = new HashSet<>();
         if (!ingredientDTOList.isEmpty()) {
             for (IngredientDTO dto : ingredientDTOList) {
                 ingredientList.add(IngredientDTO.convertFromDTO(dto));
