@@ -15,6 +15,7 @@ public class Ingredient {
     Integer id;
     @Column(nullable = false)
     String name;
+    @ManyToMany(mappedBy = "ingredients")
 
     private List<Recipe> recipes;
 
