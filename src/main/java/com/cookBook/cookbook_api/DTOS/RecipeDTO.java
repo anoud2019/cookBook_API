@@ -99,7 +99,13 @@ public class RecipeDTO {
             recipeDTO.setInstructions(recipe.getInstructions());
 
             Set<IngredientDTO> ingredientDTOList = new HashSet<>();
+           // if (HelperUtils.isNotNull(recipe.getIngredients())) {
+            if (HelperUtils.isNotNull(recipe.getIngredients()) && !recipe.getIngredients().isEmpty()){
                 for (Ingredient ingredient : recipe.getIngredients()) {
+                    IngredientDTO ingredientDTO = new IngredientDTO();
+                    ingredientDTO.setId(ingredient.getId());
+                    ingredientDTO.setName(ingredient.getName());
+                    ingredientDTOList.add(ingredientDTO);
                 }
             }
             recipeDTO.setIngredients(ingredientDTOList);
@@ -127,6 +133,9 @@ public class RecipeDTO {
             if (HelperUtils.isNotNull(dto.getIngredients())) {
                 for (IngredientDTO ingredientDTO : dto.getIngredients()) {
                     Ingredient ingredient = IngredientDTO.convertFromDTO(ingredientDTO);
+                    if (!ingredient.getRecipes().contains(entity)) {
+                        ingredient.getRecipes().add(entity);
+                    }
                     ingredients.add(ingredient);
                 }
             }
