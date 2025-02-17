@@ -16,10 +16,15 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
     @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     String name;
     String instructions;
 
     @ManyToMany
+    @JoinTable(name = "recipe_ingredient",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    private Set<Ingredient> ingredients;
 
 
     public Integer getId() {
