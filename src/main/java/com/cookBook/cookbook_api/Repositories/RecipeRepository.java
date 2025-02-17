@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 
+import java.util.Set;
+
 public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
     @Query("SELECT r FROM Recipe r WHERE r.id = :id")
     Recipe getRecipeById(@Param("id") Integer id);
