@@ -138,6 +138,13 @@ public class RecipeService {
             existingRecipe.setIngredients(updatedIngredients);
 
 
+            Recipe updatedRecipe = recipeRepository.save(existingRecipe);
+
+
+            return RecipeDTO.convertToDTO(updatedRecipe);
+        } else {
+            throw new RuntimeException("Invalid Recipe ID provided.");
+        }
     }
 
 
