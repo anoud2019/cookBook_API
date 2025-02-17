@@ -51,12 +51,9 @@ public class IngredientController {
         return ingredientService.getIngredientById(id);
     }
 
-    @PostMapping(value = "/update")
-    public IngredientDTO update(@RequestBody IngredientDTO dto) {
         IngredientDTO ingredientDTO = new IngredientDTO();
         try {
 
-            ingredientDTO = ingredientService.updateIngredient(dto);
         } catch (Exception e) {
             logger.error("Error updating ingredient: ", e);
         }
