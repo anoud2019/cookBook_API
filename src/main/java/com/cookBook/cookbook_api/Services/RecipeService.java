@@ -28,6 +28,9 @@ public class RecipeService {
     @Autowired
     IngredientService ingredientService;
 
+    public Set<RecipeDTO> getAllRecipes() {
+        List<Recipe> recipeList = recipeRepository.findAll();
+        Set<Recipe> recipes = new HashSet<>(recipeList);
         return RecipeDTO.convertToDTO(recipes);
     }
 
