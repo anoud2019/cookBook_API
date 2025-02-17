@@ -63,6 +63,16 @@ public class RecipeController {
         return recipeDTO;
     }
 
+    //    @PostMapping("update")
+//    public RecipeDTO update(@RequestBody RecipeDTO dto) {
+//        RecipeDTO recipeDTO = new RecipeDTO();
+//        try {
+//            recipeDTO = recipeService.updateRecipe(dto);
+//        } catch (Exception e) {
+//            logger.error("Error: " + e.getMessage());
+//        }
+//        return recipeDTO;
+//    }
         RecipeDTO recipeDTO = new RecipeDTO();
         try {
             recipeDTO = recipeService.updateRecipe(dto);
