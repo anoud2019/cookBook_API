@@ -17,6 +17,7 @@ public class Ingredient {
     String name;
     @ManyToMany(mappedBy = "ingredients")
 
+    private Set<Recipe> recipes;
 
 
     public Integer getId() {
@@ -35,9 +36,11 @@ public class Ingredient {
         this.name = name;
     }
 
+    public Set<Recipe> getRecipes() {
         return recipes;
     }
 
+    public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
     }
 
