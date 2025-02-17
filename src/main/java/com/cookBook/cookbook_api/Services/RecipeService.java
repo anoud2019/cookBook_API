@@ -167,8 +167,11 @@ public class RecipeService {
         return recipeDTOList;
     }
 
+    public Set<RecipeDTO> searchRecipesByName(String name) {
 
+        Set<Recipe> recipes = recipeRepository.findRecipesByNameContaining(name);
 
+        Set<RecipeDTO> recipeDTOList = new HashSet<>();
 
 
         for (Recipe recipe : recipes) {
