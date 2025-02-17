@@ -1,10 +1,14 @@
 package com.cookBook.cookbook_api.Models;
 
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
