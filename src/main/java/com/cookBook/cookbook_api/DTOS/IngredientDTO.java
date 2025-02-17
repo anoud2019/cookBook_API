@@ -4,13 +4,10 @@ import com.cookBook.cookbook_api.Models.Ingredient;
 import com.cookBook.cookbook_api.Models.Recipe;
 import com.cookBook.cookbook_api.Utils.HelperUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class IngredientDTO {
     private Integer id;
     private String name;
-    private List<RecipeDTO> recipes;
 
     public Integer getId() {
         return id;
@@ -28,11 +25,9 @@ public class IngredientDTO {
         this.name = name;
     }
 
-    public List<RecipeDTO> getRecipes() {
         return recipes;
     }
 
-    public void setRecipes(List<RecipeDTO> recipes) {
         this.recipes = recipes;
     }
 
@@ -42,8 +37,6 @@ public class IngredientDTO {
             ingredientDTO.setId(ingredient.getId());
             ingredientDTO.setName(ingredient.getName());
 
-
-            List<RecipeDTO> recipeDTOList = new ArrayList<>();
             if (HelperUtils.isNotNull(ingredient.getRecipes()) && !ingredient.getRecipes().isEmpty()) {
                 for (Recipe recipe : ingredient.getRecipes()) {
                     recipeDTOList.add(RecipeDTO.convertToDTO(recipe));
@@ -55,9 +48,6 @@ public class IngredientDTO {
         }
         return ingredientDTO;
     }
-
-    public static List<IngredientDTO> convertToDTO(List<Ingredient> ingredientList) {
-        List<IngredientDTO> ingredientDTOList = new ArrayList<>();
         if (!ingredientList.isEmpty()) {
             for (Ingredient i : ingredientList) {
                 ingredientDTOList.add(convertToDTO(i));
@@ -71,8 +61,6 @@ public class IngredientDTO {
         if (HelperUtils.isNotNull(dto)) {
             entity.setName(dto.getName());
 
-
-            List<Recipe> recipes = new ArrayList<>();
             if (HelperUtils.isNotNull(dto.getRecipes())) {
                 for (RecipeDTO recipeDTO : dto.getRecipes()) {
                     Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
@@ -86,8 +74,6 @@ public class IngredientDTO {
     }
 
 
-    public static List<Ingredient> convertFromDTO(List<IngredientDTO> ingredientDTOList) {
-        List<Ingredient> ingredientList = new ArrayList<>();
         if (!ingredientDTOList.isEmpty()) {
             for (IngredientDTO dto : ingredientDTOList) {
                 ingredientList.add(IngredientDTO.convertFromDTO(dto));
