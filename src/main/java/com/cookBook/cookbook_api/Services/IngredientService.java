@@ -120,23 +120,15 @@ public class IngredientService {
                     }
                 }
             }
-            entity = ingredientRepository.save(entity);
             return IngredientDTO.convertToDTO(entity);
         } else {
             Ingredient entity = IngredientDTO.convertFromDTO(dto);
             List<Recipe> recipes = new ArrayList<>();
-            for (RecipeDTO recipeDTO : dto.getRecipes()) {
-                Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
-                recipe.getIngredients().add(entity);
-                recipes.add(recipe);
-                recipeRepository.save(recipe);
             }
             entity = ingredientRepository.save(entity);
             return IngredientDTO.convertToDTO(entity);
         }
-
     }
-
 
     public Boolean deleteIngredient(Integer id) {
         if (HelperUtils.isNotNull(id) && ingredientRepository.existsById(id)) {
