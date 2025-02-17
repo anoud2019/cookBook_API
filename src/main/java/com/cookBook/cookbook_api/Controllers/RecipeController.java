@@ -21,7 +21,10 @@ public class RecipeController {
     @Autowired
     private RecipeService recipeService;
 
+
     @GetMapping(value = "/getAll")
+    public Set<RecipeDTO> getAllRecipes() {
+        Set<RecipeDTO> recipeDTOList = new HashSet<>();
         try {
             recipeDTOList.addAll(recipeService.getAllRecipes());
         } catch (Exception e) {
@@ -30,6 +33,7 @@ public class RecipeController {
 
         return recipeDTOList;
     }
+
 
     @GetMapping(value = "/getById")
     public RecipeDTO getRecipeById(@RequestParam(value = "recipeId") Integer id) {
