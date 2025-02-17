@@ -107,6 +107,35 @@ public class RecipeService {
 //        return new RecipeDTO();
 //    }
 
+    public RecipeDTO updateRecipe(Integer id, RecipeDTO dto) {
+        if (HelperUtils.isNotNull(id)) {
+
+            Recipe existingRecipe = recipeRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Recipe not found with ID: " + id));
+
+
+            existingRecipe.setName(dto.getName());
+            existingRecipe.setInstructions(dto.getInstructions());
+
+
+            Set<Ingredient> updatedIngredients = new HashSet<>();
+            for (IngredientDTO ingredientDTO : dto.getIngredients()) {
+                Ingredient ingredient;
+                if (ingredientDTO.getId() != null) {
+
+                    ingredient = ingredientRepository.findById(ingredientDTO.getId())
+                            .orElseThrow(() -> new RuntimeException("Ingredient not found"));
+                } else {
+
+                    ingredient = new Ingredient();
+                    ingredient.setName(ingredientDTO.getName());
+                    ingredient = ingredientRepository.save(ingredient);
+                }
+                updatedIngredients.add(ingredient);
+            }
+
+
+            existingRecipe.setIngredients(updatedIngredients);
 
     public RecipeDTO updateRecipe(RecipeDTO dto) {
         if (HelperUtils.isNotNull(dto)) {
