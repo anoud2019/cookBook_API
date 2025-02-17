@@ -129,6 +129,27 @@ public class IngredientDTO {
         return ingredientDTOList;
     }
 
+    //    public static Ingredient convertFromDTO(IngredientDTO dto) {
+//        Ingredient entity = new Ingredient();
+//        if (HelperUtils.isNotNull(dto)) {
+//            entity.setName(dto.getName());
+//
+//
+//            Set<Recipe> recipes = new HashSet<>();
+//            if (HelperUtils.isNotNull(dto.getRecipes())) {
+//                for (RecipeDTO recipeDTO : dto.getRecipes()) {
+//                    Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
+//                    if (!recipe.getIngredients().contains(entity)) {
+//                        recipe.getIngredients().add(entity);
+//                    }
+//
+//                    recipes.add(recipe);
+//                }
+//            }
+//            entity.setRecipes(recipes);
+//        }
+//        return entity;
+//    }
     public static Ingredient convertFromDTO(IngredientDTO dto) {
         Ingredient entity = new Ingredient();
         if (HelperUtils.isNotNull(dto)) {
