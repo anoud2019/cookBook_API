@@ -125,7 +125,6 @@ public class RecipeController {
             return recipeService.searchRecipesByName(name);
         } catch (Exception e) {
             logger.error("Error: " + e.getMessage());
-            return new ArrayList<>();
             return new HashSet<>();
         }
     }
