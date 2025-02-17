@@ -161,6 +161,15 @@ public class IngredientService {
     }
 
 
+//    public IngredientDTO updateIngredient(IngredientDTO dto) {
+//        if (HelperUtils.isNotNull(dto)) {
+//            Ingredient entity = IngredientDTO.convertFromDTO(dto);
+//            entity = ingredientRepository.save(entity);
+//            return IngredientDTO.convertToDTO(entity);
+//        }
+//        return new IngredientDTO();
+//    }
+
         }
         return new IngredientDTO();
     }
