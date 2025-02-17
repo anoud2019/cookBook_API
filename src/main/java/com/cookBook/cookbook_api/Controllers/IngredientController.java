@@ -3,7 +3,6 @@ package com.cookBook.cookbook_api.Controllers;
 import com.cookBook.cookbook_api.DTOS.IngredientDTO;
 import com.cookBook.cookbook_api.DTOS.RecipeDTO;
 import com.cookBook.cookbook_api.Models.Recipe;
-import com.cookBook.cookbook_api.RequestObject.AddIngredientRequest;
 import com.cookBook.cookbook_api.Services.IngredientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
