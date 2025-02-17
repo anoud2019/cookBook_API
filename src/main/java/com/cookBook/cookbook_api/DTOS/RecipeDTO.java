@@ -50,6 +50,24 @@ public class RecipeDTO {
     }
 
 
+    //    public static RecipeDTO convertToDTO(Recipe recipe) {
+//        RecipeDTO recipeDTO = new RecipeDTO();
+//        if (HelperUtils.isNotNull(recipe)) {
+//            recipeDTO.setId(recipe.getId());
+//            recipeDTO.setName(recipe.getName());
+//            recipeDTO.setInstructions(recipe.getInstructions());
+//
+//            Set<IngredientDTO> ingredientDTOList = new HashSet<>();
+//            if (HelperUtils.isNotNull(recipe.getIngredients()) && !recipe.getIngredients().isEmpty()) {
+//                for (Ingredient ingredient : recipe.getIngredients()) {
+//                    ingredientDTOList.add(IngredientDTO.convertToDTO(ingredient));
+//                }
+//            }
+//            recipeDTO.setIngredients(ingredientDTOList);
+//        }
+//
+//        return recipeDTO;
+//    }
     public static RecipeDTO convertToDTO(Recipe recipe) {
         RecipeDTO recipeDTO = new RecipeDTO();
         if (HelperUtils.isNotNull(recipe)) {
