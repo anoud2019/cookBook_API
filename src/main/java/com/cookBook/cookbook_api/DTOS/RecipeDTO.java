@@ -5,6 +5,9 @@ import com.cookBook.cookbook_api.Models.Recipe;
 import com.cookBook.cookbook_api.Utils.HelperUtils;
 
 
+import java.util.HashSet;
+
+import java.util.Set;
 
 public class RecipeDTO {
     private Integer id;
@@ -12,6 +15,7 @@ public class RecipeDTO {
     private String name;
     private String instructions;
 
+    private Set<IngredientDTO> ingredients;
 
     public Integer getId() {
         return id;
@@ -37,9 +41,11 @@ public class RecipeDTO {
         this.instructions = instructions;
     }
 
+    public Set<IngredientDTO> getIngredients() {
         return ingredients;
     }
 
+    public void setIngredients(Set<IngredientDTO> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -51,6 +57,7 @@ public class RecipeDTO {
             recipeDTO.setName(recipe.getName());
             recipeDTO.setInstructions(recipe.getInstructions());
 
+            Set<IngredientDTO> ingredientDTOList = new HashSet<>();
                 for (Ingredient ingredient : recipe.getIngredients()) {
                 }
             }
@@ -59,6 +66,8 @@ public class RecipeDTO {
         return recipeDTO;
     }
 
+    public static Set<RecipeDTO> convertToDTO(Set<Recipe> recipeList) {
+        Set<RecipeDTO> recipeDTOList = new HashSet<>();
         if (!recipeList.isEmpty()) {
             for (Recipe r : recipeList) {
                 recipeDTOList.add(convertToDTO(r));
@@ -73,6 +82,7 @@ public class RecipeDTO {
             entity.setName(dto.getName());
             entity.setInstructions(dto.getInstructions());
 
+            Set<Ingredient> ingredients = new HashSet<>();
             if (HelperUtils.isNotNull(dto.getIngredients())) {
                 for (IngredientDTO ingredientDTO : dto.getIngredients()) {
                     Ingredient ingredient = IngredientDTO.convertFromDTO(ingredientDTO);
@@ -85,6 +95,8 @@ public class RecipeDTO {
     }
 
 
+    public static Set<Recipe> convertFromDTO(Set<RecipeDTO> recipeDTOList) {
+        Set<Recipe> recipeList = new HashSet<>();
         if (!recipeDTOList.isEmpty()) {
             for (RecipeDTO dto : recipeDTOList) {
                 recipeList.add(RecipeDTO.convertFromDTO(dto));
