@@ -42,6 +42,16 @@ public class RecipeController {
 
     }
 
+    //    @PostMapping(value = "/add")
+//    public RecipeDTO add(@RequestBody RecipeDTO dto) {
+//        RecipeDTO recipeDTO = new RecipeDTO();
+//        try {
+//            recipeDTO = recipeService.addRecipe(dto);
+//        } catch (Exception e) {
+//            logger.error("Error: " + e.getMessage());
+//        }
+//        return recipeDTO;
+//    }
     @PostMapping(value = "/add")
     public RecipeDTO add(@RequestBody RecipeDTO dto) {
         RecipeDTO recipeDTO = new RecipeDTO();
