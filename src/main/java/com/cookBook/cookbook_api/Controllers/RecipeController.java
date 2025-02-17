@@ -77,7 +77,6 @@ public class RecipeController {
     public RecipeDTO update(@PathVariable Integer id, @RequestBody RecipeDTO dto) {
         RecipeDTO recipeDTO = new RecipeDTO();
         try {
-            recipeDTO = recipeService.updateRecipe(dto);
 
             recipeDTO = recipeService.updateRecipe(id, dto);
         } catch (Exception e) {
@@ -108,13 +107,11 @@ public class RecipeController {
     }
 
     @GetMapping(value = "/searchRecipesByIngredients")
-    public List<RecipeDTO> searchRecipesByIngredients(@RequestParam List<String> ingredients) {
         try {
             return recipeService.searchRecipesByIngredients(ingredients);
         } catch (Exception e) {
             logger.error("Error while searching recipes by ingredients: " + e.getMessage());
 
-            return new ArrayList<>();
         }
 
 
