@@ -118,6 +118,9 @@ public class IngredientDTO {
 //        }
 //        return ingredientDTO;
 //    }
+
+    public static Set<IngredientDTO> convertToDTO(Set<Ingredient> ingredientList) {
+        Set<IngredientDTO> ingredientDTOList = new HashSet<>();
         if (!ingredientList.isEmpty()) {
             for (Ingredient i : ingredientList) {
                 ingredientDTOList.add(convertToDTO(i));
