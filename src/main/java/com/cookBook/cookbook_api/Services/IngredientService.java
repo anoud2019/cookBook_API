@@ -202,7 +202,6 @@ public class IngredientService {
         } else {
             throw new RuntimeException("Invalid Ingredient ID provided.");
         }
-        return new IngredientDTO();
     }
 
 
