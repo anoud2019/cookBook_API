@@ -96,6 +96,28 @@ public class IngredientDTO {
         }
         return dto;
     }
+//    public static IngredientDTO convertToDTO(Ingredient ingredient) {
+//        IngredientDTO ingredientDTO = new IngredientDTO();
+//        if (HelperUtils.isNotNull(ingredient)) {
+//            ingredientDTO.setId(ingredient.getId());
+//            ingredientDTO.setName(ingredient.getName());
+//
+//            Set<RecipeDTO> recipeDTOList = new HashSet<>();
+//            if (HelperUtils.isNotNull(ingredient.getRecipes()) && !ingredient.getRecipes().isEmpty()) {
+//                for (Recipe recipe : ingredient.getRecipes()) {
+//                    if (HelperUtils.isNotNull(recipe)) {
+//                        RecipeDTO recipeDTO = new RecipeDTO();
+//                        recipeDTO.setId(recipe.getId());
+//                        recipeDTO.setName(recipe.getName());
+//
+//                        recipeDTOList.add(recipeDTO);
+//                    }
+//                }
+//            }
+//            ingredientDTO.setRecipes(recipeDTOList);
+//        }
+//        return ingredientDTO;
+//    }
         if (!ingredientList.isEmpty()) {
             for (Ingredient i : ingredientList) {
                 ingredientDTOList.add(convertToDTO(i));
