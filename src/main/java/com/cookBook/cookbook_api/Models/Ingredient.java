@@ -15,7 +15,6 @@ public class Ingredient {
     Integer id;
     @Column(nullable = false)
     String name;
-    @ManyToMany
 
     private List<Recipe> recipes;
 
