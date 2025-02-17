@@ -10,9 +10,11 @@ public class HelperUtils {
     public static <A> boolean isNotNull(A value) {
         return value != null;
     }
+
     public static boolean isNotEmpty(String value) {
         return value != null && !value.trim().isEmpty();
     }
+
     public static <T> boolean isNotEmpty(List<T> list) {
         return list != null && !list.isEmpty();
     }
