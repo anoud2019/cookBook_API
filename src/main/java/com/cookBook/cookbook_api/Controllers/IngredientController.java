@@ -51,10 +51,25 @@ public class IngredientController {
         return ingredientService.getIngredientById(id);
     }
 
+    //    @PostMapping(value = "/update")
+//    public IngredientDTO update(@RequestBody IngredientDTO dto) {
+//        IngredientDTO ingredientDTO = new IngredientDTO();
+//        try {
+//
+//            ingredientDTO = ingredientService.updateIngredient(dto);
+//        } catch (Exception e) {
+//            logger.error("Error updating ingredient: ", e);
+//        }
+//        return ingredientDTO;
+//    }
+    @PutMapping(value = "/update/{id}")
+    public IngredientDTO update(@PathVariable Integer id, @RequestBody IngredientDTO dto) {
         IngredientDTO ingredientDTO = new IngredientDTO();
         try {
 
+            ingredientDTO = ingredientService.updateIngredient(id, dto);
         } catch (Exception e) {
+
             logger.error("Error updating ingredient: ", e);
         }
         return ingredientDTO;
