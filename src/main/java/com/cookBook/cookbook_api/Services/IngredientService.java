@@ -108,6 +108,15 @@ public class IngredientService {
         if (HelperUtils.isNotNull(dto.getId())) {
             Ingredient entity = IngredientDTO.convertFromDTO(dto);
 
+            // التحقق من أن recipes ليست null
+            if (dto.getRecipes() != null) {
+                for (RecipeDTO recipeDTO : dto.getRecipes()) {
+                    if (HelperUtils.isNotNull(recipeDTO.getId())) {
+                        Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
+                        if (!recipe.getIngredients().contains(entity)) {
+                            recipe.getIngredients().add(entity);
+                            recipeRepository.save(recipe);
+                        }
                     }
                 }
             }
