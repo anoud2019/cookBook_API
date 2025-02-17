@@ -22,8 +22,6 @@ public class RecipeController {
     private RecipeService recipeService;
 
     @GetMapping(value = "/getAll")
-    public List<RecipeDTO> getAllRecipes() {
-        List<RecipeDTO> recipeDTOList = new ArrayList<>();
         try {
             recipeDTOList.addAll(recipeService.getAllRecipes());
         } catch (Exception e) {
