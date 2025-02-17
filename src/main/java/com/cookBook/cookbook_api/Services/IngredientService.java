@@ -170,6 +170,37 @@ public class IngredientService {
 //        return new IngredientDTO();
 //    }
 
+    public IngredientDTO updateIngredient(Integer id, IngredientDTO dto) {
+        if (HelperUtils.isNotNull(id)) {
+            Ingredient existingIngredient = ingredientRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Ingredient not found with ID: " + id));
+
+            existingIngredient.setName(dto.getName());
+
+            Set<Recipe> updatedRecipes = new HashSet<>();
+            if (HelperUtils.isNotNull(dto.getRecipes()) && !dto.getRecipes().isEmpty()) {
+                for (RecipeDTO recipeDTO : dto.getRecipes()) {
+                    Recipe recipe;
+                    if (recipeDTO.getId() != null) {
+                        recipe = recipeRepository.findById(recipeDTO.getId())
+                                .orElseThrow(() -> new RuntimeException("Recipe not found"));
+                    } else {
+                        recipe = new Recipe();
+                        recipe.setName(recipeDTO.getName());
+                        recipe.setInstructions(recipeDTO.getInstructions());
+                        recipe = recipeRepository.save(recipe); // حفظ الوصفة الجديدة
+                    }
+                    updatedRecipes.add(recipe);
+                }
+            }
+
+            existingIngredient.setRecipes(updatedRecipes);
+
+            Ingredient updatedIngredient = ingredientRepository.save(existingIngredient);
+
+            return IngredientDTO.convertToDTO(updatedIngredient);
+        } else {
+            throw new RuntimeException("Invalid Ingredient ID provided.");
         }
         return new IngredientDTO();
     }
