@@ -68,6 +68,7 @@ public class RecipeDTO {
 //
 //        return recipeDTO;
 //    }
+//run
 
     //    public static RecipeDTO convertToDTO(Recipe recipe) {
 //        RecipeDTO recipeDTO = new RecipeDTO();
@@ -91,6 +92,7 @@ public class RecipeDTO {
 //        return recipeDTO;
 //    }
 //
+//يشتغل
     public static RecipeDTO convertToDTO(Recipe recipe) {
         RecipeDTO recipeDTO = new RecipeDTO();
         if (HelperUtils.isNotNull(recipe)) {

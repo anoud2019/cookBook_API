@@ -69,6 +69,7 @@ public class RecipeService {
             throw new RuntimeException("Recipe with the same name already exists.");
         }
 
+        // إنشاء وصفة جديدة
         Recipe recipe = new Recipe();
         recipe.setName(dto.getName());
         recipe.setInstructions(dto.getInstructions());

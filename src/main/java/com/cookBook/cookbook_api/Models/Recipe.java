@@ -15,7 +15,6 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
-    @Column(nullable = false)
     @Column(nullable = false, unique = true)
     String name;
     String instructions;
