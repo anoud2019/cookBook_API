@@ -120,12 +120,34 @@ public class IngredientService {
                     }
                 }
             }
+
+            if (!ingredientRepository.existsById(entity.getId())) {
+                entity = ingredientRepository.save(entity);
+
+                if (HelperUtils.isNull(entity.getId())) {
+                    throw new RuntimeException("Failed to save ingredient. Entity ID is null.");
+                }
+            }
+
             return IngredientDTO.convertToDTO(entity);
         } else {
             Ingredient entity = IngredientDTO.convertFromDTO(dto);
             List<Recipe> recipes = new ArrayList<>();
+            if (dto.getRecipes() != null) {
+                for (RecipeDTO recipeDTO : dto.getRecipes()) {
+                    Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
+                    recipe.getIngredients().add(entity);
+                    recipes.add(recipe);
+                    recipeRepository.save(recipe);
+                }
             }
+
             entity = ingredientRepository.save(entity);
+
+            if (HelperUtils.isNull(entity.getId())) {
+                throw new RuntimeException("Failed to save ingredient. Entity ID is null.");
+            }
+
             return IngredientDTO.convertToDTO(entity);
         }
     }
