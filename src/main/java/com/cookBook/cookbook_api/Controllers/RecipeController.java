@@ -107,11 +107,13 @@ public class RecipeController {
     }
 
     @GetMapping(value = "/searchRecipesByIngredients")
+    public Set<RecipeDTO> searchRecipesByIngredients(@RequestParam Set<String> ingredients) {
         try {
             return recipeService.searchRecipesByIngredients(ingredients);
         } catch (Exception e) {
             logger.error("Error while searching recipes by ingredients: " + e.getMessage());
 
+            return new HashSet<>();
         }
 
 
