@@ -1,5 +1,6 @@
 package com.cookBook.cookbook_api.Repositories;
 
+
 import com.cookBook.cookbook_api.Models.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,6 +17,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
     Set<Recipe> findRecipesByIngredients(@Param("ingredients") Set<String> ingredients);
 
     @Query("SELECT r FROM Recipe r WHERE r.name LIKE %:name%")
+    Set<Recipe> findRecipesByNameContaining(@Param("name") String name);
+
 
 
 }
