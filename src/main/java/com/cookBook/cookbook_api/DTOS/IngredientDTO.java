@@ -78,13 +78,23 @@ public class IngredientDTO {
 //        return ingredientDTO;
 //    }
     public static IngredientDTO convertToDTO(Ingredient ingredient) {
+        IngredientDTO dto = new IngredientDTO();
         if (HelperUtils.isNotNull(ingredient)) {
+            dto.setId(ingredient.getId());
+            dto.setName(ingredient.getName());
 
             Set<RecipeDTO> recipeDTOs = new HashSet<>();
+            if (HelperUtils.isNotNull(ingredient.getRecipes())) {
                 for (Recipe recipe : ingredient.getRecipes()) {
+                    RecipeDTO recipeDTO = new RecipeDTO();
+                    recipeDTO.setId(recipe.getId());
+                    recipeDTO.setName(recipe.getName());
+                    recipeDTOs.add(recipeDTO);
                 }
             }
+            dto.setRecipes(recipeDTOs);
         }
+        return dto;
     }
         if (!ingredientList.isEmpty()) {
             for (Ingredient i : ingredientList) {
