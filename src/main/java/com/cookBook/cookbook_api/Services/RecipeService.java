@@ -64,7 +64,6 @@ public class RecipeService {
 //    }
     public RecipeDTO addRecipe(RecipeDTO dto) {
 
-        Recipe entity = RecipeDTO.convertFromDTO(dto);
 
         //add ingredient to recipe
         for (IngredientDTO ingredientDTO : dto.getIngredients()) {
