@@ -73,13 +73,8 @@ public class RecipeService {
         recipe.setName(dto.getName());
         recipe.setInstructions(dto.getInstructions());
 
-        //add ingredient to recipe
         Set<Ingredient> ingredients = new HashSet<>();
         for (IngredientDTO ingredientDTO : dto.getIngredients()) {
-            Ingredient ingredient = IngredientDTO.convertFromDTO(ingredientDTO);
-            if (!ingredient.getRecipes().contains(entity)) {
-                ingredient.getRecipes().add(entity);
-                ingredientRepository.save(ingredient);
             Ingredient ingredient;
             if (ingredientDTO.getId() != null) {
 
@@ -93,8 +88,6 @@ public class RecipeService {
             }
             ingredients.add(ingredient);
         }
-        entity = recipeRepository.save(entity);
-        return RecipeDTO.convertToDTO(entity);
         recipe.setIngredients(ingredients);
 
 
