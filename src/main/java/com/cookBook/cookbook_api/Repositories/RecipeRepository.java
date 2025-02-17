@@ -12,6 +12,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
     @Query("SELECT r FROM Recipe r WHERE r.id = :id")
     Recipe getRecipeById(@Param("id") Integer id);
 
+    @Query("SELECT r FROM Recipe r JOIN r.ingredients i WHERE i.name IN :ingredients")
+    Set<Recipe> findRecipesByIngredients(@Param("ingredients") Set<String> ingredients);
 
     @Query("SELECT r FROM Recipe r WHERE r.name LIKE %:name%")
 
