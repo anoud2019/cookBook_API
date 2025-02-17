@@ -63,9 +63,6 @@ public class RecipeController {
         return recipeDTO;
     }
 
-
-    @PostMapping("update")
-    public RecipeDTO update(@RequestBody RecipeDTO dto) {
         RecipeDTO recipeDTO = new RecipeDTO();
         try {
             recipeDTO = recipeService.updateRecipe(dto);
