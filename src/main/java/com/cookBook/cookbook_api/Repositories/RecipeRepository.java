@@ -1,6 +1,5 @@
 package com.cookBook.cookbook_api.Repositories;
 
-import com.cookBook.cookbook_api.Models.Ingredient;
 import com.cookBook.cookbook_api.Models.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
