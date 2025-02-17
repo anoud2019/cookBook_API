@@ -2,7 +2,6 @@ package com.cookBook.cookbook_api.Models;
 
 import jakarta.persistence.*;
 
-import java.util.List;
 
 
 @Entity
@@ -15,7 +14,6 @@ public class Recipe {
     String instructions;
 
     @ManyToMany
-    private List<Ingredient> ingredients;
 
 
     public Integer getId() {
@@ -42,11 +40,9 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
