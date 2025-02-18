@@ -87,10 +87,8 @@ public class IngredientService {
                     .orElseThrow(() -> new RuntimeException("Ingredient not found with ID: " + id));
 
             // تحديث بيانات المكون الأساسية
-            existingIngredient.setName(dto.getName());
 
             // تحديث الوصفات المرتبطة بالمكون (إذا كانت موجودة)
-            Set<Recipe> updatedRecipes = new HashSet<>();
             if (HelperUtils.isNotNull(dto.getRecipes()) && !dto.getRecipes().isEmpty()) {
                 for (RecipeDTO recipeDTO : dto.getRecipes()) {
                     Recipe recipe;
