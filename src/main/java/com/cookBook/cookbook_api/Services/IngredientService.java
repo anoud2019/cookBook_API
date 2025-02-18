@@ -73,13 +73,9 @@ public class IngredientService {
 
     public Boolean deleteIngredient(Integer id) {
         if (HelperUtils.isNotNull(id) && ingredientRepository.existsById(id)) {
-            ingredientRepository.deleteById(id);
-            return true;
         if (HelperUtils.isNull(entity.getId())) {
             throw new RuntimeException("Failed to save ingredient. Entity ID is null.");
         }
-        return false;
-    }
 
         return IngredientDTO.convertToDTO(entity);
     }
