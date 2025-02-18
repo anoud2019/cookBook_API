@@ -59,8 +59,6 @@ public class RecipeDTO {
             recipeDTO.setInstructions(recipe.getInstructions());
 
             Set<IngredientDTO> ingredientDTOList = new HashSet<>();
-           // if (HelperUtils.isNotNull(recipe.getIngredients())) {
-            if (HelperUtils.isNotNull(recipe.getIngredients()) && !recipe.getIngredients().isEmpty()){
                 for (Ingredient ingredient : recipe.getIngredients()) {
                     IngredientDTO ingredientDTO = new IngredientDTO();
                     ingredientDTO.setId(ingredient.getId());
