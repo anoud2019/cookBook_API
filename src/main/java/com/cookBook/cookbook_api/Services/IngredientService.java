@@ -49,6 +49,7 @@ public class IngredientService {
             // التحقق من وجود الكيان في قاعدة البيانات
 
                 // التحقق من أن الكيان تم حفظه بنجاح
+        Ingredient entity = IngredientDTO.convertFromDTO(dto);
 
             // تحويل DTO إلى Entity
 
@@ -74,10 +75,14 @@ public class IngredientService {
         if (HelperUtils.isNotNull(id) && ingredientRepository.existsById(id)) {
             ingredientRepository.deleteById(id);
             return true;
+        if (HelperUtils.isNull(entity.getId())) {
+            throw new RuntimeException("Failed to save ingredient. Entity ID is null.");
         }
         return false;
     }
 
+        return IngredientDTO.convertToDTO(entity);
+    }
 
 //    public IngredientDTO updateIngredient(IngredientDTO dto) {
 //        if (HelperUtils.isNotNull(dto)) {
@@ -91,6 +96,7 @@ public class IngredientService {
     public IngredientDTO updateIngredient(Integer id, IngredientDTO dto) {
         if (HelperUtils.isNotNull(id)) {
             // التحقق مما إذا كان المكون موجودًا بالفعل
+
             Ingredient existingIngredient = ingredientRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException("Ingredient not found with ID: " + id));
 
