@@ -59,6 +59,7 @@ public class RecipeDTO {
             recipeDTO.setInstructions(recipe.getInstructions());
 
             Set<IngredientDTO> ingredientDTOList = new HashSet<>();
+            if (HelperUtils.isNotNull(recipe.getIngredients()) && !recipe.getIngredients().isEmpty()) {
                 for (Ingredient ingredient : recipe.getIngredients()) {
                     IngredientDTO ingredientDTO = new IngredientDTO();
                     ingredientDTO.setId(ingredient.getId());
@@ -91,6 +92,7 @@ public class RecipeDTO {
             if (HelperUtils.isNotNull(dto.getIngredients())) {
                 for (IngredientDTO ingredientDTO : dto.getIngredients()) {
                     Ingredient ingredient = IngredientDTO.convertFromDTO(ingredientDTO);
+                    ingredients.add(ingredient);
                     if (!ingredient.getRecipes().contains(entity)) {
                         ingredient.getRecipes().add(entity);
                     }
