@@ -33,47 +33,8 @@ public class IngredientService {
         return IngredientDTO.convertToDTO(entity);
     }
 
-//    }
     //يشتغل
-//    public IngredientDTO addIngredient(IngredientDTO dto) {
-//        if (HelperUtils.isNotNull(dto.getId())) {
-//            Ingredient entity = IngredientDTO.convertFromDTO(dto);
-//
 //            // التحقق من أن recipes ليست null
-//            if (dto.getRecipes() != null) {
-//                for (RecipeDTO recipeDTO : dto.getRecipes()) {
-//                    if (HelperUtils.isNotNull(recipeDTO.getId())) {
-//                        Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
-//                        if (!recipe.getIngredients().contains(entity)) {
-//                            recipe.getIngredients().add(entity);
-//                            recipeRepository.save(recipe);
-//                        }
-//                    }
-//                }
-//            }
-//
-//            if (!ingredientRepository.existsById(entity.getId())) {
-//                entity = ingredientRepository.save(entity);
-//            }
-//            return IngredientDTO.convertToDTO(entity);
-//        } else {
-//            Ingredient entity = IngredientDTO.convertFromDTO(dto);
-//            List<Recipe> recipes = new ArrayList<>();
-//
-//            // التحقق من أن recipes ليست null
-//            if (dto.getRecipes() != null) {
-//                for (RecipeDTO recipeDTO : dto.getRecipes()) {
-//                    Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
-//                    recipe.getIngredients().add(entity);
-//                    recipes.add(recipe);
-//                    recipeRepository.save(recipe);
-//                }
-//            }
-//
-//            entity = ingredientRepository.save(entity);
-//            return IngredientDTO.convertToDTO(entity);
-//        }
-//    }
     public IngredientDTO addIngredient(IngredientDTO dto) {
         if (HelperUtils.isNotNull(dto.getId())) {
             // تحويل DTO إلى Entity
