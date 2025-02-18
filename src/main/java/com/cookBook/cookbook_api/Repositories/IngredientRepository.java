@@ -11,5 +11,8 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Integer>
     @Query("SELECT i FROM Ingredient i WHERE i.id = :id")
     Ingredient getIngredientById(@Param("id") Integer id);
 
+    @Query("SELECT i FROM Ingredient i WHERE LOWER(i.name) = LOWER(:name)")
+    Ingredient findByName(@Param("name") String name);
+
 
 }
