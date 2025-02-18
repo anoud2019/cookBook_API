@@ -65,6 +65,11 @@ public class RecipeService {
                 ingredient.setName(ingredientDTO.getName());
                 ingredient = ingredientRepository.save(ingredient);
             }
+
+            if (!ingredient.getRecipes().contains(recipe)) {
+                ingredient.getRecipes().add(recipe);
+                ingredientRepository.save(ingredient);
+            }
             ingredients.add(ingredient);
         }
         recipe.setIngredients(ingredients);
