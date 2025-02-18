@@ -128,7 +128,19 @@ public class RecipeService {
 
     public Boolean deleteRecipe(Integer id) {
         if (HelperUtils.isNotNull(id) && recipeRepository.existsById(id)) {
+
+            Recipe recipe = recipeRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Recipe not found"));
+
+
+            for (Ingredient ingredient : recipe.getIngredients()) {
+                ingredient.getRecipes().remove(recipe);
+                ingredientRepository.save(ingredient);
+            }
+
+
             recipeRepository.deleteById(id);
+
             return true;
         }
         return false;
