@@ -36,60 +36,26 @@ public class IngredientService {
     //يشتغل
 //            // التحقق من أن recipes ليست null
     public IngredientDTO addIngredient(IngredientDTO dto) {
-        if (HelperUtils.isNotNull(dto.getId())) {
             // تحويل DTO إلى Entity
-            Ingredient entity = IngredientDTO.convertFromDTO(dto);
 
             // التحقق من أن recipes ليست null
-            if (dto.getRecipes() != null) {
-                for (RecipeDTO recipeDTO : dto.getRecipes()) {
-                    if (HelperUtils.isNotNull(recipeDTO.getId())) {
-                        Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
-                        if (!recipe.getIngredients().contains(entity)) {
-                            recipe.getIngredients().add(entity);
-                            recipeRepository.save(recipe);
-                        }
-                    }
-                }
-            }
 
             // التحقق من وجود الكيان في قاعدة البيانات
-            if (!ingredientRepository.existsById(entity.getId())) {
-                entity = ingredientRepository.save(entity);
 
                 // التحقق من أن الكيان تم حفظه بنجاح
-                if (HelperUtils.isNull(entity.getId())) {
-                    throw new RuntimeException("Failed to save ingredient. Entity ID is null.");
-                }
-            }
 
-            return IngredientDTO.convertToDTO(entity);
-        } else {
             // تحويل DTO إلى Entity
-            Ingredient entity = IngredientDTO.convertFromDTO(dto);
-            List<Recipe> recipes = new ArrayList<>();
 
             // التحقق من أن recipes ليست null
-            if (dto.getRecipes() != null) {
-                for (RecipeDTO recipeDTO : dto.getRecipes()) {
-                    Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
                     recipe.getIngredients().add(entity);
-                    recipes.add(recipe);
                     recipeRepository.save(recipe);
                 }
             }
 
             // حفظ الكيان في قاعدة البيانات
-            entity = ingredientRepository.save(entity);
 
             // التحقق من أن الكيان تم حفظه بنجاح
-            if (HelperUtils.isNull(entity.getId())) {
-                throw new RuntimeException("Failed to save ingredient. Entity ID is null.");
-            }
 
-            return IngredientDTO.convertToDTO(entity);
-        }
-    }
 
     public Boolean deleteIngredient(Integer id) {
         if (HelperUtils.isNotNull(id) && ingredientRepository.existsById(id)) {
