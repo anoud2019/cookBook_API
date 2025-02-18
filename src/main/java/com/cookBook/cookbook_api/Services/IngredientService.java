@@ -35,10 +35,16 @@ public class IngredientService {
 
     //يشتغل
 //            // التحقق من أن recipes ليست null
+
     public IngredientDTO addIngredient(IngredientDTO dto) {
             // تحويل DTO إلى Entity
 
             // التحقق من أن recipes ليست null
+        Ingredient existingIngredient = ingredientRepository.findByName(dto.getName());
+        if (existingIngredient != null) {
+
+            return IngredientDTO.convertToDTO(existingIngredient);
+        }
 
             // التحقق من وجود الكيان في قاعدة البيانات
 
@@ -47,14 +53,21 @@ public class IngredientService {
             // تحويل DTO إلى Entity
 
             // التحقق من أن recipes ليست null
+        if (dto.getRecipes() != null) {
+            for (RecipeDTO recipeDTO : dto.getRecipes()) {
+                if (HelperUtils.isNotNull(recipeDTO.getId())) {
+                    Recipe recipe = recipeRepository.findById(recipeDTO.getId())
+                            .orElseThrow(() -> new RuntimeException("Recipe not found"));
                     recipe.getIngredients().add(entity);
                     recipeRepository.save(recipe);
                 }
             }
+        }
 
             // حفظ الكيان في قاعدة البيانات
 
             // التحقق من أن الكيان تم حفظه بنجاح
+        entity = ingredientRepository.save(entity);
 
 
     public Boolean deleteIngredient(Integer id) {
