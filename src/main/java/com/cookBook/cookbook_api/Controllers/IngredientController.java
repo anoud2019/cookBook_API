@@ -51,6 +51,7 @@ public class IngredientController {
         return ingredientService.getIngredientById(id);
     }
 
+
     @PutMapping(value = "/update/{id}")
     public IngredientDTO update(@PathVariable Integer id, @RequestBody IngredientDTO dto) {
         IngredientDTO ingredientDTO = new IngredientDTO();
@@ -63,6 +64,7 @@ public class IngredientController {
         }
         return ingredientDTO;
     }
+
 
     @DeleteMapping(value = "/delete/{id}")
     public Boolean delete(@PathVariable Integer id) {
