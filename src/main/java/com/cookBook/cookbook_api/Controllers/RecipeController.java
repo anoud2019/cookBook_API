@@ -42,6 +42,7 @@ public class RecipeController {
 
     }
 
+
     @PostMapping(value = "/add")
     public RecipeDTO add(@RequestBody RecipeDTO dto) {
         RecipeDTO recipeDTO = new RecipeDTO();
@@ -52,6 +53,7 @@ public class RecipeController {
         }
         return recipeDTO;
     }
+
 
     @PutMapping("/update/{id}")
     public RecipeDTO update(@PathVariable Integer id, @RequestBody RecipeDTO dto) {
