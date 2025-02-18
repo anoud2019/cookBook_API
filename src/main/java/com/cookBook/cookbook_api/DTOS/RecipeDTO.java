@@ -71,15 +71,6 @@ public class RecipeDTO {
         return recipeDTO;
     }
 
-    //    public static Set<RecipeDTO> convertToDTO(Set<Recipe> recipeList) {
-//        Set<RecipeDTO> recipeDTOList = new HashSet<>();
-//        if (!recipeList.isEmpty()) {
-//            for (Recipe r : recipeList) {
-//                recipeDTOList.add(convertToDTO(r));
-//            }
-//        }
-//        return recipeDTOList;
-//    }
     public static Set<RecipeDTO> convertToDTO(Set<Recipe> recipeList) {
         Set<RecipeDTO> recipeDTOList = new HashSet<>();
         if (!recipeList.isEmpty()) {
@@ -103,7 +94,6 @@ public class RecipeDTO {
                     if (!ingredient.getRecipes().contains(entity)) {
                         ingredient.getRecipes().add(entity);
                     }
-                    ingredients.add(ingredient);
                 }
             }
             entity.setIngredients(ingredients);
