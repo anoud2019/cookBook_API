@@ -53,16 +53,6 @@ public class RecipeController {
         return recipeDTO;
     }
 
-    //    @PostMapping("update")
-//    public RecipeDTO update(@RequestBody RecipeDTO dto) {
-//        RecipeDTO recipeDTO = new RecipeDTO();
-//        try {
-//            recipeDTO = recipeService.updateRecipe(dto);
-//        } catch (Exception e) {
-//            logger.error("Error: " + e.getMessage());
-//        }
-//        return recipeDTO;
-//    }
     @PutMapping("/update/{id}")
     public RecipeDTO update(@PathVariable Integer id, @RequestBody RecipeDTO dto) {
         RecipeDTO recipeDTO = new RecipeDTO();
