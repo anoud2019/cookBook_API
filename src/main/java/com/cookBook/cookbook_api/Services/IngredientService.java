@@ -132,5 +132,22 @@ public class IngredientService {
         }
     }
 
+    public Boolean deleteIngredient(Integer id) {
+        if (HelperUtils.isNotNull(id) && ingredientRepository.existsById(id)) {
+            Ingredient ingredient = ingredientRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Ingredient not found"));
+
+
+            for (Recipe recipe : ingredient.getRecipes()) {
+                recipe.getIngredients().remove(ingredient);
+                recipeRepository.save(recipe);
+            }
+
+            ingredientRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
 
 }
