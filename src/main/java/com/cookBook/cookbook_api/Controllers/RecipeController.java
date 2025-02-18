@@ -66,16 +66,6 @@ public class RecipeController {
         return recipeDTO;
     }
 
-    //    @DeleteMapping(value = "/delete")
-//    public Boolean deleteRecipe(@RequestBody RecipeDTO dto) {
-//        try {
-//            return recipeService.deleteRecipe(dto.getId());
-//        } catch (Exception e) {
-//            logger.error("Error: " + e.getMessage());
-//            return false;
-//
-//        }
-//    }
     @DeleteMapping(value = "/delete/{id}")
     public Boolean deleteRecipe(@PathVariable Integer id) {
         try {
