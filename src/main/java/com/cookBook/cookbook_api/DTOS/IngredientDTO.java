@@ -38,6 +38,7 @@ public class IngredientDTO {
         this.recipes = recipes;
     }
 
+
     public static IngredientDTO convertToDTO(Ingredient ingredient) {
         IngredientDTO dto = new IngredientDTO();
         if (HelperUtils.isNotNull(ingredient)) {
@@ -58,6 +59,7 @@ public class IngredientDTO {
         return dto;
     }
 
+
     public static Set<IngredientDTO> convertToDTO(Set<Ingredient> ingredientList) {
         Set<IngredientDTO> ingredientDTOList = new HashSet<>();
         if (!ingredientList.isEmpty()) {
@@ -76,9 +78,11 @@ public class IngredientDTO {
             Set<Recipe> recipes = new HashSet<>();
             if (HelperUtils.isNotNull(dto.getRecipes())) {
                 for (RecipeDTO recipeDTO : dto.getRecipes()) {
+
                     if (HelperUtils.isNotNull(recipeDTO)) {
                         Recipe recipe = RecipeDTO.convertFromDTO(recipeDTO);
                         recipes.add(recipe);
+
 
                         if (!recipe.getIngredients().contains(entity)) {
                             recipe.getIngredients().add(entity);
