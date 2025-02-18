@@ -71,8 +71,6 @@ public class IngredientService {
         entity = ingredientRepository.save(entity);
 
 
-    public Boolean deleteIngredient(Integer id) {
-        if (HelperUtils.isNotNull(id) && ingredientRepository.existsById(id)) {
         if (HelperUtils.isNull(entity.getId())) {
             throw new RuntimeException("Failed to save ingredient. Entity ID is null.");
         }
@@ -80,14 +78,6 @@ public class IngredientService {
         return IngredientDTO.convertToDTO(entity);
     }
 
-//    public IngredientDTO updateIngredient(IngredientDTO dto) {
-//        if (HelperUtils.isNotNull(dto)) {
-//            Ingredient entity = IngredientDTO.convertFromDTO(dto);
-//            entity = ingredientRepository.save(entity);
-//            return IngredientDTO.convertToDTO(entity);
-//        }
-//        return new IngredientDTO();
-//    }
 
     public IngredientDTO updateIngredient(Integer id, IngredientDTO dto) {
         if (HelperUtils.isNotNull(id)) {
