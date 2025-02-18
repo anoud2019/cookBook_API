@@ -89,19 +89,28 @@ public class IngredientService {
             // تحديث بيانات المكون الأساسية
 
             // تحديث الوصفات المرتبطة بالمكون (إذا كانت موجودة)
+            if (HelperUtils.isNotNull(dto.getName())) {
+                existingIngredient.setName(dto.getName());
+            }
+
+
             if (HelperUtils.isNotNull(dto.getRecipes()) && !dto.getRecipes().isEmpty()) {
+                Set<Recipe> updatedRecipes = new HashSet<>();
                 for (RecipeDTO recipeDTO : dto.getRecipes()) {
                     Recipe recipe;
                     if (recipeDTO.getId() != null) {
                         // إذا كانت الوصفة موجودة بالفعل في قاعدة البيانات
+
                         recipe = recipeRepository.findById(recipeDTO.getId())
                                 .orElseThrow(() -> new RuntimeException("Recipe not found"));
                     } else {
                         // إذا كانت الوصفة جديدة
+
                         recipe = new Recipe();
                         recipe.setName(recipeDTO.getName());
                         recipe.setInstructions(recipeDTO.getInstructions());
                         recipe = recipeRepository.save(recipe); // حفظ الوصفة الجديدة
+                        recipe = recipeRepository.save(recipe);
                     }
                     updatedRecipes.add(recipe);
                 }
@@ -109,11 +118,14 @@ public class IngredientService {
 
             // تحديث الوصفات المرتبطة بالمكون
             existingIngredient.setRecipes(updatedRecipes);
+                existingIngredient.setRecipes(updatedRecipes);
+            }
 
             // حفظ التغييرات في قاعدة البيانات
             Ingredient updatedIngredient = ingredientRepository.save(existingIngredient);
 
             // تحويل الكيان المحدث إلى DTO وإرجاعه
+
             return IngredientDTO.convertToDTO(updatedIngredient);
         } else {
             throw new RuntimeException("Invalid Ingredient ID provided.");
