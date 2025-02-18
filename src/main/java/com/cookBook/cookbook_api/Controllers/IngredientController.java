@@ -64,15 +64,6 @@ public class IngredientController {
         return ingredientDTO;
     }
 
-    //        @DeleteMapping(value = "/delete")
-//    public Boolean delete(@RequestBody IngredientDTO dto) {
-//        try {
-//            return ingredientService.deleteIngredient(dto.getId());
-//        } catch (Exception e) {
-//            logger.error("Error deleting ingredient: ", e);
-//        }
-//        return false;
-//    }
     @DeleteMapping(value = "/delete/{id}")
     public Boolean delete(@PathVariable Integer id) {
         return ingredientService.deleteIngredient(id);
