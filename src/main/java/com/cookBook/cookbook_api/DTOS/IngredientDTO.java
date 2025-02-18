@@ -38,28 +38,6 @@ public class IngredientDTO {
         this.recipes = recipes;
     }
 
-//        return ingredientDTO;
-    //    public static IngredientDTO convertToDTO(Ingredient ingredient) {
-//        IngredientDTO ingredientDTO = new IngredientDTO();
-//        if (HelperUtils.isNotNull(ingredient)) {
-//            ingredientDTO.setId(ingredient.getId());
-//            ingredientDTO.setName(ingredient.getName());
-//
-//            //  ingredientDTO.setRecipes(null);
-//            Set<RecipeDTO> recipeDTOList = new HashSet<>();
-//            if (HelperUtils.isNotNull(ingredient.getRecipes()) && !ingredient.getRecipes().isEmpty()) {
-//                for (Recipe recipe : ingredient.getRecipes()) {
-//                    RecipeDTO recipeDTO = new RecipeDTO();
-//                    recipeDTO.setId(recipe.getId());
-//                    recipeDTO.setName(recipe.getName());
-//                    recipeDTOList.add(recipeDTO);
-//                }
-//            }
-//            ingredientDTO.setRecipes(recipeDTOList);
-//
-//        }
-//        return ingredientDTO;
-//    }
     public static IngredientDTO convertToDTO(Ingredient ingredient) {
         IngredientDTO dto = new IngredientDTO();
         if (HelperUtils.isNotNull(ingredient)) {
