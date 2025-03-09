@@ -8,9 +8,15 @@ import com.cookBook.cookbook_api.Repositories.IngredientRepository;
 import com.cookBook.cookbook_api.Repositories.RecipeRepository;
 import com.cookBook.cookbook_api.Utils.HelperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 
 import java.util.List;
@@ -19,6 +25,7 @@ import java.util.Set;
 
 @Service
 public class RecipeService {
+    private static final String UPLOAD_DIR = "images/";
     @Autowired
     private RecipeRepository recipeRepository;
 
@@ -39,18 +46,11 @@ public class RecipeService {
         return RecipeDTO.convertToDTO(entity);
     }
 
-
-    public RecipeDTO addRecipe(RecipeDTO dto) {
-
-        Recipe existingRecipe = recipeRepository.findByName(dto.getName());
-        if (existingRecipe != null) {
-            throw new RuntimeException("Recipe with the same name already exists.");
-        }
-
-        // إنشاء وصفة جديدة
+    public RecipeDTO addRecipe(RecipeDTO dto, MultipartFile file) {
         Recipe recipe = new Recipe();
         recipe.setName(dto.getName());
         recipe.setInstructions(dto.getInstructions());
+
 
         Set<Ingredient> ingredients = new HashSet<>();
         for (IngredientDTO ingredientDTO : dto.getIngredients()) {
@@ -58,86 +58,99 @@ public class RecipeService {
             if (ingredientDTO.getId() != null) {
 
                 ingredient = ingredientRepository.findById(ingredientDTO.getId())
-                        .orElseThrow(() -> new RuntimeException("Ingredient not found"));
+                        .orElseThrow(() -> new IllegalArgumentException("Ingredient not found"));
             } else {
 
                 ingredient = new Ingredient();
                 ingredient.setName(ingredientDTO.getName());
                 ingredient = ingredientRepository.save(ingredient);
             }
-
-            if (!ingredient.getRecipes().contains(recipe)) {
-                ingredient.getRecipes().add(recipe);
-                ingredientRepository.save(ingredient);
-            }
             ingredients.add(ingredient);
         }
         recipe.setIngredients(ingredients);
 
 
-        Recipe savedRecipe = recipeRepository.save(recipe);
+        if (file != null && !file.isEmpty()) {
+            try {
+                recipe.setImageUrl(saveUploadedFile(file));
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to upload image", e);
+            }
+        }
 
 
-        return RecipeDTO.convertToDTO(savedRecipe);
+        return RecipeDTO.convertToDTO(recipeRepository.save(recipe));
     }
 
-    public RecipeDTO updateRecipe(Integer id, RecipeDTO dto) {
-        if (HelperUtils.isNotNull(id)) {
+    public void updateRecipe(Integer id, RecipeDTO dto, MultipartFile file) {
+        // Fetch the current recipe from the database
+        Recipe recipe = recipeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Recipe not found with ID: " + id));
 
-            Recipe existingRecipe = recipeRepository.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Recipe not found with ID: " + id));
+        // Update fields only if they are not empty
+        if (dto.getName() != null && !dto.getName().isEmpty()) {
+            recipe.setName(dto.getName());
+        }
+        if (dto.getInstructions() != null && !dto.getInstructions().isEmpty()) {
+            recipe.setInstructions(dto.getInstructions());
+        }
 
-
-            existingRecipe.setName(dto.getName());
-            existingRecipe.setInstructions(dto.getInstructions());
-
-
-            Set<Ingredient> updatedIngredients = new HashSet<>();
+        // Update ingredients if provided
+        if (dto.getIngredients() != null && !dto.getIngredients().isEmpty()) {
+            Set<Ingredient> ingredients = new HashSet<>();
             for (IngredientDTO ingredientDTO : dto.getIngredients()) {
                 Ingredient ingredient;
                 if (ingredientDTO.getId() != null) {
-
                     ingredient = ingredientRepository.findById(ingredientDTO.getId())
-                            .orElseThrow(() -> new RuntimeException("Ingredient not found"));
+                            .orElseThrow(() -> new IllegalArgumentException("Ingredient not found"));
                 } else {
-
                     ingredient = new Ingredient();
                     ingredient.setName(ingredientDTO.getName());
                     ingredient = ingredientRepository.save(ingredient);
                 }
-                if (!ingredient.getRecipes().contains(existingRecipe)) {
-                    ingredient.getRecipes().add(existingRecipe);
-                    ingredientRepository.save(ingredient);
-                }
-                updatedIngredients.add(ingredient);
+                ingredients.add(ingredient);
             }
-
-
-            existingRecipe.setIngredients(updatedIngredients);
-
-
-            Recipe updatedRecipe = recipeRepository.save(existingRecipe);
-
-
-            return RecipeDTO.convertToDTO(updatedRecipe);
-        } else {
-            throw new RuntimeException("Invalid Recipe ID provided.");
+            recipe.setIngredients(ingredients);
         }
+
+        // Update the image if a new file is uploaded
+        if (file != null && !file.isEmpty()) {
+            try {
+                recipe.setImageUrl(saveUploadedFile(file));
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to upload image", e);
+            }
+        }
+
+        // Save the updated recipe
+        recipeRepository.save(recipe);
+    }
+
+    @Value("${server.url}")
+    private String serverUrl;
+
+    private String saveUploadedFile(MultipartFile file) throws IOException {
+        Path uploadPath = Paths.get("uploads");
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+        String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        Files.copy(file.getInputStream(), uploadPath.resolve(fileName));
+
+
+        return serverUrl + "/recipes/images/" + fileName;
     }
 
 
     public Boolean deleteRecipe(Integer id) {
         if (HelperUtils.isNotNull(id) && recipeRepository.existsById(id)) {
-
             Recipe recipe = recipeRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException("Recipe not found"));
-
 
             for (Ingredient ingredient : recipe.getIngredients()) {
                 ingredient.getRecipes().remove(recipe);
                 ingredientRepository.save(ingredient);
             }
-
 
             recipeRepository.deleteById(id);
 
@@ -145,6 +158,7 @@ public class RecipeService {
         }
         return false;
     }
+
 
     public Set<RecipeDTO> searchRecipesByIngredients(Set<String> ingredients) {
         Set<Recipe> recipes = recipeRepository.findRecipesByIngredients(ingredients);
