@@ -1,0 +1,1211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.auth-links a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #4CAF50;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.auth-links a:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.add-recipe-btn {
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    padding: 10px 15px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.add-recipe-btn:hover {
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);
+    transform: scale(1.05);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    filter: brightness(0.8);
+    transition: transform 0.5s ease;
+}
+
+.hero-image:hover {
+    transform: scale(1.05);
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Search Section */
+.search-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 70%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #4CAF50;
+}
+
+.search-btn {
+    padding: 12px 20px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);
+    transform: scale(1.05);
+}
+
+
+/* ... باقي الأنماط ... */
+
+/* Recipes Section */
+.recipe-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* زيادة الحد الأدنى للعرض */
+    gap: 25px; /* زيادة الفجوة بين البطاقات */
+}
+
+.recipe-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px; /* زيادة تقويس الحواف */
+    padding: 22px; /* زيادة المساحة الداخلية */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* زيادة تأثير الظل */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.recipe-card:hover {
+    transform: translateY(-6px); /* زيادة تأثير التحليق */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* زيادة تأثير الظل عند التحليق */
+}
+
+.recipe-card img {
+    width: 100%; /* يجعل الصورة تأخذ كامل عرض الحاوية */
+    height: 350px; /* زيادة ارتفاع الصور */
+    aspect-ratio: 16 / 9; /* يحافظ على نسبة العرض إلى الارتفاع */
+    object-fit: cover; /* يحافظ على تناسق الصورة ويقوم بقص الجزء الزائد */
+    border-radius: 10px; /* حواف مستديرة للصور */
+    margin-bottom: 20px; /* زيادة المسافة بين الصورة والمحتوى أدناه */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-card h3 {
+    font-size: 1rem; /* زيادة حجم الخط */
+    margin-bottom: 12px; /* زيادة المسافة السفلية */
+    color: #333;
+}
+
+.recipe-card p {
+    font-size: 1.1rem; /* زيادة حجم الخط */
+    color: #666;
+    flex-grow: 1;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px; /* زيادة المسافة العلوية */
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 9px 14px; /* زيادة المساحة الداخلية للأزرار */
+    border-radius: 20px; /* زيادة تقويس الحواف */
+    font-size: 1rem; /* زيادة حجم الخط */
+    display: flex; /* لجعل النص والأيقونة بجانب بعضهما */
+    align-items: center; /* لمحاذاة النص والأيقونة عموديًا */
+    gap: 8px; /* إضافة مسافة بين النص والأيقونة */
+}
+
+.edit-btn {
+    background-color: #FFC107;
+    color: #fff;
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+.delete-btn {
+    background-color: #DC3545;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background-color: #b02a37;
+    transform: scale(1.05);
+}
+
+/* ... باقي الأنماط ... */
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 0;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 12px;
+    font-size: 1rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Edit Recipe Page Styles */
+.edit-form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.edit-form-container h1 {
+    font-size: 2rem;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    text-align: left;
+}
+
+label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #4CAF50;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.hint {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 5px;
+    display: block;
+}
+
+.submit-btn {
+    padding: 12px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);
+    transform: scale(1.05);
+}
+
+
+.message {
+    display: none;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Sign-In Page Styles */
+.sign-in-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 40px;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.sign-in-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    animation: rotateBackground 10s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rotateBackground {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.sign-in-container h2 {
+    font-size: 2.2rem;
+    color: #4CAF50;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.sign-in-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 50px;
+    height: 4px;
+    background: #4CAF50;
+    border-radius: 2px;
+    transform: translateX(-50%);
+}
+
+.sign-in-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sign-in-container input[type="text"],
+.sign-in-container input[type="password"] {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+    position: relative;
+}
+
+.sign-in-container input[type="text"]:focus,
+.sign-in-container input[type="password"]:focus {
+    border-color: #4CAF50;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.sign-in-container button {
+    padding: 14px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sign-in-container button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease;
+}
+
+.sign-in-container button:hover::after {
+    left: 100%;
+}
+
+.sign-in-container button:hover {
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);
+    transform: scale(1.05);
+}
+
+.sign-in-container p {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.sign-in-container a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.sign-in-container a:hover {
+    color: #45a049;
+}
+
+/* Sign-Up Page Styles */
+.sign-up-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 40px;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.sign-up-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    animation: rotateBackground 10s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rotateBackground {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.sign-up-container h2 {
+    font-size: 2.2rem;
+    color: #4CAF50;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.sign-up-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 50px;
+    height: 4px;
+    background: #4CAF50;
+    border-radius: 2px;
+    transform: translateX(-50%);
+}
+
+.sign-up-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sign-up-container label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 5px;
+    text-align: left;
+    display: block;
+}
+
+.sign-up-container input[type="text"],
+.sign-up-container input[type="email"],
+.sign-up-container input[type="password"] {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+    position: relative;
+}
+
+.sign-up-container input[type="text"]:focus,
+.sign-up-container input[type="email"]:focus,
+.sign-up-container input[type="password"]:focus {
+    border-color: #4CAF50;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.sign-up-container select {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+.sign-up-container select:focus {
+    border-color: #4CAF50;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.sign-up-container button {
+    padding: 14px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sign-up-container button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease;
+}
+
+.sign-up-container button:hover::after {
+    left: 100%;
+}
+
+.sign-up-container button:hover {
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);
+    transform: scale(1.05);
+}
+
+.sign-up-container p {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.sign-up-container a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.sign-up-container a:hover {
+    color: #45a049;
+}
+
+/* Add Recipe Page Styles */
+.add-recipe-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 40px;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.add-recipe-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    animation: rotateBackground 10s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rotateBackground {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.add-recipe-container h1 {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.add-recipe-container h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 70px;
+    height: 4px;
+    background: #4CAF50;
+    border-radius: 2px;
+    transform: translateX(-50%);
+}
+
+.add-recipe-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.add-recipe-container label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.add-recipe-container input[type="text"],
+.add-recipe-container textarea {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+    position: relative;
+}
+
+.add-recipe-container input[type="text"]:focus,
+.add-recipe-container textarea:focus {
+    border-color: #4CAF50;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.add-recipe-container button {
+    padding: 14px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.add-recipe-container button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease;
+}
+
+.add-recipe-container button:hover::after {
+    left: 100%;
+}
+
+.add-recipe-container button:hover {
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);
+    transform: scale(1.05);
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #DC3545;
+    text-align: center;
+}
+
+#recipesList {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    text-align: left;
+}
+
+#recipesList li {
+    background: #fff;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#recipesList li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Styles */
+/* General Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 800px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+/* Title */
+.modal-title {
+    font-family: 'Georgia', serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Image Container */
+.image-container {
+    width: 100%;
+    height: 200px;
+    /* Set a fixed height */
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensure the image fits nicely within the container */
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect for the image */
+.image-container:hover .modal-image {
+    transform: scale(1.1);
+    /* Slight zoom effect on hover */
+}
+
+/* General Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 800px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+/* Title */
+.modal-title {
+    font-family: 'Georgia', serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Image Container */
+.image-container {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.modal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect for the image */
+.image-container:hover .modal-image {
+    transform: scale(1.1);
+}
+
+
+/* General Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 800px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+/* Title */
+.modal-title {
+    font-family: 'Georgia', serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Image Container */
+.image-container {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.modal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect for the image */
+.image-container:hover .modal-image {
+    transform: scale(1.1);
+}
+
+
+.modal-body {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Ingredients Column */
+.modal-column.ingredients {
+    flex: 1;
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-right: 2px solid #e0e0e0;
+}
+
+.modal-column.ingredients h3 {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-column.ingredients h3 i {
+    color: #0074d9;
+}
+
+.modal-ingredients {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.modal-ingredients li {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Instructions Column */
+.modal-column.instructions {
+    flex: 1;
+    background-color: #fffaf0;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-column.instructions h3 {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-column.instructions h3 i {
+    color: #ff6f61;
+}
+
+.modal-instructions {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.chat-section {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chat-section h2 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.chat-messages {
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: white;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.chat-messages p {
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 80%;
+    clear: both;
+    font-size: 0.9rem;
+}
+
+.chat-messages p:last-child {
+    margin-bottom: 0;
+}
+
+.chat-messages p strong {
+    font-weight: 600;
+}
+
+.chat-messages p:nth-child(odd) {
+    background-color: #e6f7ff;
+    align-self: flex-end;
+    float: right;
+    text-align: right;
+}
+
+.chat-messages p:nth-child(even) {
+    background-color: #f0f0f0;
+    align-self: flex-start;
+    float: left;
+    text-align: left;
+}
+
+.chat-input-area {
+    display: flex;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.chat-input {
+    flex-grow: 1;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.chat-input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 3px rgba(76, 175, 80, 0.3);
+}
+
+.send-btn {
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    margin-left: 8px;
+}
+
+.send-btn:hover {
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);
+    transform: scale(1.05);
+}
+#searchLoginMessage, #chatLoginMessage {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+#messageArea{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #ffcccc;
+    color: #cc0000;
+    z-index: 1001;
+}
