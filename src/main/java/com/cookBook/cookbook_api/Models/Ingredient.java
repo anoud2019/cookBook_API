@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,8 +18,7 @@ public class Ingredient {
     String name;
     @ManyToMany(mappedBy = "ingredients")
 
-    private Set<Recipe> recipes;
-
+    private Set<Recipe> recipes = new HashSet<>();
 
     public Integer getId() {
         return id;
