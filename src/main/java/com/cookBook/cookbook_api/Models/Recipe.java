@@ -25,6 +25,8 @@ public class Recipe {
             inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     private Set<Ingredient> ingredients;
 
+    private String imageUrl;
+
 
     public Integer getId() {
         return id;
@@ -58,4 +60,11 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }
