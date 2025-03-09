@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Edit Recipe</h1>
+        <form id="editRecipeForm" class="edit-form" enctype="multipart/form-data">
+            <input type="hidden" id="recipeId">
+            <div class="form-group">
+                <label for="name">Recipe Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter recipe name...">
+                <small class="hint">Make sure the name is descriptive.</small>
+            </div>
+            <div class="form-group">
+                <label for="instructions">Instructions:</label>
+                <textarea id="instructions" name="instructions" placeholder="Enter cooking instructions..."></textarea>
+                <small class="hint">Provide step-by-step instructions.</small>
+            </div>
+            <div class="form-group">
+                <label for="ingredients">Ingredients (comma-separated):</label>
+                <input type="text" id="ingredients" name="ingredients" placeholder="e.g., Pasta, Eggs, Cheese, Bacon">
+                <small class="hint">Separate ingredients with commas.</small>
+            </div>
+            <div class="form-group">
+                <label for="image">Upload Image:</label>
+                <input type="file" id="image" name="image" accept="image/*">
+                <small class="hint">Choose an image to represent your recipe.</small>
+            </div>
+            <button type="submit" class="submit-btn">Update Recipe</button>
+        </form>
+
+        <div id="successMessage"
+            style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 100, 0, 0.8); color: white; padding: 20px; border-radius: 10px; z-index: 1000; opacity: 0; transition: opacity 0.5s ease-in-out;">
+            Recipe updated successfully!
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+    <script src="editRecipe.js"></script>
+</body>
+
+</html>
