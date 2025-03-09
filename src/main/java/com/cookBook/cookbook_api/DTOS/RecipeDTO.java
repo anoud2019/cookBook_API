@@ -16,6 +16,7 @@ public class RecipeDTO {
     private String instructions;
 
     private Set<IngredientDTO> ingredients;
+    private String imageUrl;
 
     public Integer getId() {
         return id;
@@ -49,14 +50,22 @@ public class RecipeDTO {
         this.ingredients = ingredients;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-//يشتغل
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public static RecipeDTO convertToDTO(Recipe recipe) {
         RecipeDTO recipeDTO = new RecipeDTO();
         if (HelperUtils.isNotNull(recipe)) {
             recipeDTO.setId(recipe.getId());
             recipeDTO.setName(recipe.getName());
             recipeDTO.setInstructions(recipe.getInstructions());
+
+            recipeDTO.setImageUrl(recipe.getImageUrl());
 
             Set<IngredientDTO> ingredientDTOList = new HashSet<>();
             if (HelperUtils.isNotNull(recipe.getIngredients()) && !recipe.getIngredients().isEmpty()) {
@@ -88,10 +97,14 @@ public class RecipeDTO {
             entity.setName(dto.getName());
             entity.setInstructions(dto.getInstructions());
 
+
+            entity.setImageUrl(dto.getImageUrl());
+
             Set<Ingredient> ingredients = new HashSet<>();
             if (HelperUtils.isNotNull(dto.getIngredients())) {
                 for (IngredientDTO ingredientDTO : dto.getIngredients()) {
                     Ingredient ingredient = IngredientDTO.convertFromDTO(ingredientDTO);
+
                     ingredients.add(ingredient);
                     if (!ingredient.getRecipes().contains(entity)) {
                         ingredient.getRecipes().add(entity);
